@@ -3,9 +3,9 @@ import { Presentation } from './types'
 export const attackOnTitanPresentation: Presentation = {
   id: 'attack-on-titan',
   title: "Ciné Philo - L'Attaque des Titans",
-  author: "Café Philosophique",
+  author: "Ciné Philo",
   description: "Liberté, Déterminisme et Moralité dans un Monde en Cage - Une exploration philosophique de l'œuvre d'Hajime Isayama",
-  coverImage: '/images/aot-title-bg.png',
+  coverImage: '/aot/attackontitanbg.jpg',
   createdAt: '2026-01-28',
   slides: [
     // Slide 1: Title
@@ -13,11 +13,11 @@ export const attackOnTitanPresentation: Presentation = {
       id: 'title',
       type: 'title',
       theme: 'red',
-      category: 'CAFÉ PHILOSOPHIQUE',
+      category: 'CINÉ PHILOSOPHIQUE',
       title: "L'Attaque des Titans",
       subtitle: 'Liberté, Déterminisme et Moralité dans un Monde en Cage',
       description: "Une exploration philosophique de l'œuvre d'Hajime Isayama",
-      backgroundImage: '/images/aot-title-bg.png'
+      backgroundImage: '/aot/attackontitanbg.jpg',
     },
     
     // Slide 2: Introduction
@@ -38,7 +38,7 @@ export const attackOnTitanPresentation: Presentation = {
         ]
       },
       image: {
-        src: '/images/philosophers.png',
+        src: '/aot/wall.webp',
         alt: 'Socrate et philosophes grecs'
       }
     },
@@ -48,9 +48,10 @@ export const attackOnTitanPresentation: Presentation = {
       id: 'partie-1',
       type: 'section',
       theme: 'red',
-      partNumber: 'Partie I',
+      partNumber: 'I',
       title: 'Partie I',
-      subtitle: 'Paradis : La Prison Dorée'
+      subtitle: 'Paradis : la Caverne de Platon',
+      backgroundImage: '/aot/wall.webp'
     },
     
     // Slide 4: La Caverne de Platon
@@ -212,7 +213,7 @@ export const attackOnTitanPresentation: Presentation = {
         }
       ],
       image: {
-        src: '/images/cemetery.png',
+        src: '/aot/wall3.jpg',
         alt: 'Cimetière symbolisant les morts'
       }
     },
@@ -221,10 +222,11 @@ export const attackOnTitanPresentation: Presentation = {
     {
       id: 'partie-2',
       type: 'section',
-      theme: 'blue',
-      partNumber: 'Partie II',
+      theme: 'green',
+      partNumber: 'II',
       title: 'Partie II',
-      subtitle: 'Le Réveil de la Conscience'
+      subtitle: 'Bataillon d\'exploration : Aventure de la conscience',
+      backgroundImage: '/aot/expo.jpg'
     },
     
     // Slide 9: Extrait Vidéo
@@ -232,9 +234,10 @@ export const attackOnTitanPresentation: Presentation = {
       id: 'video-erwin',
       type: 'video',
       theme: 'red',
-      title: 'Extrait Vidéo',
-      placeholder: "Insérer l'extrait vidéo de Attack on Titan",
-      description: "(Exemple : Le discours d'Erwin avant la charge finale)",
+      title: 'Episode 16 Saison 3 (53) - Speech Erwin',
+      videoUrl: '/aot/video/erwin_speech.mp4',
+      placeholder: "Le discours d'Erwin avant la charge finale",
+      description: "Le discours d'Erwin Smith avant la charge contre le Titan Singe",
       quote: {
         text: '"Si on abandonne, on ne gagne rien. Si on résiste, on peut perdre... Mais si on ne résiste pas, on est sûr de perdre !"',
         author: 'Erwin Smith'
@@ -246,9 +249,24 @@ export const attackOnTitanPresentation: Presentation = {
       id: 'partie-3',
       type: 'section',
       theme: 'blue',
-      partNumber: 'Partie III',
+      partNumber: 'III',
       title: 'Partie III',
-      subtitle: 'Philosophie des Personnages'
+      subtitle: 'Absurdité de la guerre',
+      backgroundImage: '/aot/mywar.jpg'
+    },
+    // Slide 11: Extrait Vidéo
+    {
+      id: 'video-mywar',
+      type: 'video',
+      theme: 'blue',
+      title: 'Générique : Saison finale',
+      videoUrl: '/aot/video/mywar.mp4',
+      placeholder: "Le discours d'Erwin avant la charge finale",
+      description: "Le discours d'Erwin Smith avant la charge contre le Titan Singe",
+      quote: {
+        text: '"L\'escalade de la violence..."',
+        author: 'Unknown'
+      }
     },
     
     // Slide 11: Eren Jäger
@@ -387,7 +405,48 @@ export const attackOnTitanPresentation: Presentation = {
       ]
     },
     
-    // Slide 16: Parallèles avec Notre Monde
+   
+    // Slide 17: Section - Partie IV
+    {
+      id: 'partie-4',
+      type: 'section',
+      theme: 'red',
+      partNumber: 'IV',
+      title: 'Partie IV',
+      subtitle: 'Gaby : Devoir de mémoire',
+      backgroundImage: '/aot/gaby.jpg'
+    },
+    
+    // Slide 18: Questions
+    {
+      id: 'questions',
+      type: 'content',
+      theme: 'red',
+      category: 'DÉBAT PHILOSOPHIQUE',
+      title: 'Questions de Réflexion',
+      content: {
+        bulletPoints: [
+          'La liberté justifie-t-elle tous les moyens pour l\'atteindre ?',
+          'Peut-on briser le cycle de la violence sans violence ?',
+          'L\'ignorance est-elle parfois préférable à la vérité ?',
+          'Existe-t-il des guerres justes ?',
+          'Comment définir le "monstre" dans un conflit où chaque camp a ses raisons ?'
+        ]
+      }
+    },
+
+      // Slide 10: Section - Partie III
+    {
+      id: 'partie-5',
+      type: 'section',
+      theme: 'blue',
+      partNumber: 'V',
+      title: 'Partie V',
+      subtitle: 'L\'anime comme miroir de notre société',
+      backgroundImage: '/aot/putin.jpg'
+    },
+
+     // Slide 16: Parallèles avec Notre Monde
     {
       id: 'paralleles',
       type: 'parallels',
@@ -423,33 +482,6 @@ export const attackOnTitanPresentation: Presentation = {
       bottomQuote: "\"Attack on Titan nous force à confronter les questions les plus inconfortables sur la nature humaine, la justice, et le prix de la survie dans un monde moralement ambigu.\""
     },
     
-    // Slide 17: Section - Partie IV
-    {
-      id: 'partie-4',
-      type: 'section',
-      theme: 'red',
-      partNumber: 'Partie IV',
-      title: 'Partie IV',
-      subtitle: 'Réflexions et Débat'
-    },
-    
-    // Slide 18: Questions
-    {
-      id: 'questions',
-      type: 'content',
-      theme: 'red',
-      category: 'DÉBAT PHILOSOPHIQUE',
-      title: 'Questions de Réflexion',
-      content: {
-        bulletPoints: [
-          'La liberté justifie-t-elle tous les moyens pour l\'atteindre ?',
-          'Peut-on briser le cycle de la violence sans violence ?',
-          'L\'ignorance est-elle parfois préférable à la vérité ?',
-          'Existe-t-il des guerres justes ?',
-          'Comment définir le "monstre" dans un conflit où chaque camp a ses raisons ?'
-        ]
-      }
-    },
     
     // Slide 17: Conclusion
     {
@@ -465,16 +497,6 @@ export const attackOnTitanPresentation: Presentation = {
           author: 'Armin Arlert'
         }
       }
-    },
-    
-    // Slide 18: Merci
-    {
-      id: 'merci',
-      type: 'section',
-      theme: 'red',
-      partNumber: 'Merci',
-      title: 'Merci',
-      subtitle: 'Questions et Discussion'
     }
   ]
 }

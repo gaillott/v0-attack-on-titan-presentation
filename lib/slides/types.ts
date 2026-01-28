@@ -23,6 +23,7 @@ export interface SectionSlide extends BaseSlide {
   partNumber: string
   title: string
   subtitle: string
+  backgroundImage?: string
 }
 
 export interface ContentSlide extends BaseSlide {

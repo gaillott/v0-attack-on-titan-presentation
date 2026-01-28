@@ -20,12 +20,18 @@ interface PresentationViewerProps {
   presentation: Presentation
 }
 
-function renderSlide(slide: Slide) {
+function getAllSections(slides: Slide[]) {
+  return slides
+    .filter((s): s is import('@/lib/slides/types').SectionSlide => s.type === 'section')
+    .map(s => ({ partNumber: s.partNumber, subtitle: s.subtitle }))
+}
+
+function renderSlide(slide: Slide, allSlides: Slide[]) {
   switch (slide.type) {
     case 'title':
       return <TitleSlideLayout slide={slide} />
     case 'section':
-      return <SectionSlideLayout slide={slide} />
+      return <SectionSlideLayout slide={slide} allSections={getAllSections(allSlides)} />
     case 'content':
       return <ContentSlideLayout slide={slide} />
     case 'character':
@@ -106,7 +112,7 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
     <div className="relative h-screen w-screen bg-slate-900 overflow-hidden select-none">
       {/* Main Slide Content */}
       <div className="h-full w-full">
-        {renderSlide(slide)}
+        {renderSlide(slide, presentation.slides)}
       </div>
 
       {/* Navigation Arrows */}

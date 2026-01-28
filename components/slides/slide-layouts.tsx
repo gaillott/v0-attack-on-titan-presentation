@@ -107,15 +107,24 @@ export function TitleSlideLayout({ slide }: { slide: TitleSlide }) {
 }
 
 // ========== SECTION SLIDE ==========
-export function SectionSlideLayout({ slide }: { slide: SectionSlide }) {
+export function SectionSlideLayout({ slide, allSections = [] }: { slide: SectionSlide; allSections?: { partNumber: string; subtitle: string }[] }) {
   const theme = getTheme(slide.theme)
-  
+
   return (
     <div className="relative h-full w-full flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Background Image */}
+      {slide.backgroundImage && (
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${slide.backgroundImage})` }}
+        >
+          <div className="absolute inset-0 bg-slate-900/85" />
+        </div>
+      )}
       {/* Decorative gradient orbs */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-red-900/30 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-slate-700/30 rounded-full blur-3xl" />
-      
+
       {/* Content */}
       <div className="relative z-10 text-center">
         <div className={`w-24 h-1 mx-auto mb-8 ${theme.primary.replace('text-', 'bg-')}`} />
@@ -126,6 +135,27 @@ export function SectionSlideLayout({ slide }: { slide: SectionSlide }) {
           {slide.subtitle}
         </p>
         <div className={`w-24 h-1 mx-auto mt-8 ${theme.primary.replace('text-', 'bg-')}`} />
+
+        {/* All sections overview */}
+        {allSections.length > 0 && (
+          <div className="mt-12 space-y-2">
+            {allSections.map((section, i) => {
+              const isCurrent = section.partNumber === slide.partNumber
+              return (
+                <p
+                  key={i}
+                  className={
+                    isCurrent
+                      ? `text-base font-semibold ${theme.primary}`
+                      : 'text-sm text-slate-400'
+                  }
+                >
+                  {section.partNumber} — {section.subtitle}
+                </p>
+              )
+            })}
+          </div>
+        )}
       </div>
     </div>
   )
@@ -345,25 +375,36 @@ export function VideoSlideLayout({ slide }: { slide: VideoSlide }) {
   const theme = getTheme(slide.theme)
   
   return (
-    <div className="h-full w-full bg-slate-900 p-8 md:p-12 flex flex-col">
-      <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-        {slide.title}
-      </h2>
-      
-      {/* Video Placeholder */}
-      <div className="flex-1 bg-slate-800 rounded-xl flex items-center justify-center min-h-[300px] max-h-[500px]">
-        <div className="text-center">
-          <button className={`w-20 h-20 rounded-full ${theme.primary.replace('text-', 'bg-')} flex items-center justify-center mb-6 mx-auto hover:scale-110 transition-transform`}>
-            <Play className="w-8 h-8 text-white ml-1" fill="white" />
-          </button>
-          <p className="text-slate-400">{slide.placeholder}</p>
-          <p className="text-slate-500 text-sm mt-2">{slide.description}</p>
+    <div className="h-full w-full bg-slate-900 p-4 md:p-6 flex flex-col">
+      {/* Video */}
+      <div className="relative flex-1 bg-slate-800 rounded-xl overflow-hidden min-h-[400px] flex items-center justify-center">
+        {/* Title banner */}
+        <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/70 to-transparent px-4 py-3">
+          <h2 className="font-semibold text-white">{slide.title}</h2>
         </div>
+        {slide.videoUrl ? (
+          <video
+            src={slide.videoUrl}
+            controls
+            className="w-full h-full object-contain"
+            poster=""
+          >
+            <p className="text-slate-400">{slide.placeholder}</p>
+          </video>
+        ) : (
+          <div className="text-center">
+            <button className={`w-20 h-20 rounded-full ${theme.primary.replace('text-', 'bg-')} flex items-center justify-center mb-6 mx-auto hover:scale-110 transition-transform`}>
+              <Play className="w-8 h-8 text-white ml-1" fill="white" />
+            </button>
+            <p className="text-slate-400">{slide.placeholder}</p>
+            <p className="text-slate-500 text-sm mt-2">{slide.description}</p>
+          </div>
+        )}
       </div>
       
       {/* Quote */}
       {slide.quote && (
-        <div className="mt-8 text-center">
+        <div className="mt-8 mb-16 text-center">
           <p className={`text-xl italic ${theme.primary}`}>
             {slide.quote.text}
           </p>
