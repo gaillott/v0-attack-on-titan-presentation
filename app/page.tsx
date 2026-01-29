@@ -17,7 +17,7 @@ export default function Home() {
             Slide.io
           </h1>
           <p className="text-slate-400 mt-2">
-            Vos slides fait maison, prêts à être lancés.
+            Un outil pour créer des présentation maison.
           </p>
         </div>
       </header>

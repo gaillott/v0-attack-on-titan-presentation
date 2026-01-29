@@ -15,7 +15,7 @@ import type {
   PlanSlide,
   SlideTheme
 } from '@/lib/slides/types'
-import { Compass, Heart, Flame, Play, Globe, Users, Scale, AlertCircle, Quote } from 'lucide-react'
+import { Compass, Heart, Flame, Play, Globe, Users, Scale, AlertCircle, Quote, ExternalLink } from 'lucide-react'
 
 // Theme colors mapping
 const themeColors: Record<SlideTheme, { primary: string; accent: string; border: string; bg: string }> = {
@@ -424,6 +424,22 @@ export function VideoSlideLayout({ slide }: { slide: VideoSlide }) {
             </button>
             <p className="text-slate-400">{slide.placeholder}</p>
             <p className="text-slate-500 text-sm mt-2">{slide.description}</p>
+            {slide.links && slide.links.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-3 mt-4">
+                {slide.links.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg transition-colors text-sm"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    {link.title}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

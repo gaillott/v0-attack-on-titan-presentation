@@ -94,6 +94,7 @@ export interface VideoSlide extends BaseSlide {
   type: 'video'
   title: string
   videoUrl?: string
+  links?: { title: string; url: string }[]
   placeholder: string
   description: string
   quote?: {
