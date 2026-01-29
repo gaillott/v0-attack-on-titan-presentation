@@ -14,10 +14,10 @@ export default function Home() {
       <header className="border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Slide Presenter
+            Slide.io
           </h1>
           <p className="text-slate-400 mt-2">
-            Sélectionnez une présentation pour commencer
+            Vos slides fait maison, prêts à être lancés.
           </p>
         </div>
       </header>

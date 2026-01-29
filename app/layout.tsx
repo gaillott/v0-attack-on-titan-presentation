@@ -8,8 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ciné Philo - L'Attaque des Titans",
-  description: "Une exploration philosophique de l'œuvre d'Hajime Isayama - Liberté, Déterminisme et Moralité",
+  title: "Slide.io",
+  description: "Une application de slides",
   generator: 'v0.app',
   icons: {
     icon: [

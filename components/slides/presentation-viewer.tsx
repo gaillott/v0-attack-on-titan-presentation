@@ -142,10 +142,44 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [nextSlide, prevSlide, goToSlide, totalSlides])
 
+  // Touch/swipe navigation
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+
+  const minSwipeDistance = 50
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }, [])
+
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }, [])
+
+  const onTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    if (Math.abs(distance) >= minSwipeDistance) {
+      if (distance > 0) {
+        nextSlide()
+      } else {
+        prevSlide()
+      }
+    }
+    setTouchStart(null)
+    setTouchEnd(null)
+  }, [touchStart, touchEnd, nextSlide, prevSlide])
+
   const slide = presentation.slides[currentSlide]
 
   return (
-    <div className="relative h-screen w-screen bg-slate-900 overflow-hidden select-none">
+    <div
+      className="relative h-screen w-screen bg-slate-900 overflow-hidden select-none"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Main Slide Content with Fade Animation */}
       <div
         key={currentSlide}
@@ -154,11 +188,11 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
         {renderSlide(slide, presentation.slides)}
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows (hidden on mobile, swipe used instead) */}
       <button
         onClick={prevSlide}
         disabled={currentSlide === 0}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-all"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed items-center justify-center transition-all"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-6 h-6 text-white" />
@@ -167,16 +201,16 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
       <button
         onClick={nextSlide}
         disabled={currentSlide === totalSlides - 1}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-all"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed items-center justify-center transition-all"
         aria-label="Next slide"
       >
         <ChevronRight className="w-6 h-6 text-white" />
       </button>
 
       {/* Bottom Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-14 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-6">
+      <div className="absolute bottom-0 left-0 right-0 h-14 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-2 md:px-6 overflow-hidden">
         {/* Home button & Slide Counter */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4 shrink-0">
           <Link
             href="/"
             className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
@@ -184,18 +218,18 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
           >
             <Home className="w-4 h-4 text-white" />
           </Link>
-          <div className="text-slate-400 text-sm">
-            Diapositive {currentSlide + 1} / {totalSlides}
+          <div className="text-slate-400 text-xs md:text-sm whitespace-nowrap">
+            {currentSlide + 1} / {totalSlides}
           </div>
         </div>
 
         {/* Dot Navigation */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1 md:gap-1.5 overflow-x-auto mx-2 scrollbar-hide">
           {presentation.slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all ${
+              className={`h-2 rounded-full transition-all shrink-0 ${
                 index === currentSlide
                   ? 'w-6 bg-red-500'
                   : 'w-2 bg-slate-600 hover:bg-slate-500'
@@ -206,7 +240,7 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
         </div>
 
         {/* Keyboard hint & Help */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4 shrink-0">
           <span className="text-slate-500 text-sm hidden md:block">
             {'Utilisez ← → ou Espace pour naviguer'}
           </span>

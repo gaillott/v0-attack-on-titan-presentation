@@ -68,6 +68,20 @@ export const attackOnTitanPresentation: Presentation = {
       subtitle: 'Paradis : la Caverne de Platon',
       backgroundImage: '/aot/wall.webp'
     },
+    // Slide 4 
+    {
+      id: 'video-erwin',
+      type: 'video',
+      theme: 'red',
+      title: 'Présentation de Paradis, Hannes, Echange entre Keith et Carla',
+      videoUrl: '',
+      placeholder: "Présentation de Paradis, Hannes, Echange entre Keith et Carla'",
+      description: "Présentation de Paradis, Hannes, Echange entre Keith et Carla",
+      quote: {
+        text: '" L\'homme qui s\'adonne à ses plaisirs devient moins libre que celui qui s\'en restreint. "',
+        author: 'Spinoza'
+      }
+    },
     // Slide 7: Contexte Historique
     {
       id: 'contexte-historique',
@@ -102,41 +116,15 @@ export const attackOnTitanPresentation: Presentation = {
         }
       ],
       image: {
-        src: '/aot/wall3.jpg',
+        src: '/aot/eldia.webp',
         alt: 'Cimetière symbolisant les morts'
       },
       cards : [{
-        title: "La distraction remplace l'engagement",
-        content: "Face à l'actualité et le contexte écologique, nous préférérons vivre heureux, loin des problèmes. Mais la menace gronde. Pouvons-nous détourner les yeux indéfiniment ?",
-        highlight: '',
-        subtext: ''
+        title: "L'illusion du sentiment de sécurité",
+        content: "",
+        highlight: 'Fausse sécurité - Illusion - Séparativisme',
+        subtext: "Face à l'actualité et le contexte écologique, nous préférérons vivre heureux, loin des problèmes. Tant que le problème est à un continent près, une frontière près, une ville près, nous ne nous sentons pas concernés. Pourtant, cela ne veut pas dire que la menace est fausse."
       }]
-    },
-    // Slide 4: La Caverne de Platon
-    {
-      id: 'caverne-platon',
-      type: 'content',
-      theme: 'red',
-      category: 'ALLÉGORIE PHILOSOPHIQUE',
-      title: 'Paradis : La Caverne de Platon',
-      content: {
-        highlightedText: 'Pendant que le monde se fait la guerre',
-        text: ', Paradis vit en paix, en autarcie, ignorant...',
-        quote: {
-          text: "Comme les prisonniers de la caverne de Platon, le peuple de Paradis ne connaît que les ombres projetées sur les murs. Les trois enceintes ne sont pas seulement des remparts contre les Titans, mais les parois d'une prison mentale.",
-          author: ''
-        },
-        bulletPoints: [
-          "L'ignorance comme protection : Karl Fritz a effacé les mémoires pour créer un paradis artificiel",
-          "La vérité douloureuse : Sortir de la caverne signifie découvrir une réalité insupportable",
-          "Le refus de savoir : La majorité préfère le confort de l'illusion à la liberté de la connaissance"
-        ]
-      },
-      image: {
-        src: '/images/walls.png',
-        alt: 'Les murs de Paradis',
-        caption: '"Que préférez-vous : vivre dans une cage dorée ou mourir libre ?"'
-      }
     },
     
     // Slide 5: Hannes
@@ -179,7 +167,32 @@ export const attackOnTitanPresentation: Presentation = {
       ]
     },
     
-
+    // Slide 6: La Caverne de Platon
+    {
+      id: 'caverne-platon',
+      type: 'content',
+      theme: 'red',
+      category: 'ALLÉGORIE PHILOSOPHIQUE',
+      title: 'Paradis : La Caverne de Platon',
+      content: {
+        highlightedText: 'Pendant que le monde se fait la guerre',
+        text: ', Paradis vit en paix, en autarcie, ignorant...',
+        quote: {
+          text: "Comme les prisonniers de la caverne de Platon, le peuple de Paradis ne connaît que les ombres projetées sur les murs. Les trois enceintes ne sont pas seulement des remparts contre les Titans, mais les parois d'une prison mentale.",
+          author: ''
+        },
+        bulletPoints: [
+          "L'ignorance comme protection : Karl Fritz a effacé les mémoires pour créer un paradis artificiel",
+          "La vérité douloureuse : Sortir de la caverne signifie découvrir une réalité insupportable",
+          "Le refus de savoir : La majorité préfère le confort de l'illusion à la liberté de la connaissance"
+        ]
+      },
+      image: {
+        src: '/aot/wall3.jpg',
+        alt: 'Les murs de Paradis',
+        caption: '"Que préférez-vous : vivre dans une cage dorée ou mourir libre ?"'
+      }
+    },
     
     
     
