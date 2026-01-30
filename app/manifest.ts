@@ -2,13 +2,13 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Slide.io',
-    short_name: 'Slide.io',
+    name: 'Ataraxis',
+    short_name: 'Ataraxis',
     description: 'Créez et partagez des présentations interactives',
     start_url: '/',
     display: 'standalone',
     background_color: '#0f172a',
-    theme_color: '#6366f1',
+    theme_color: '#0f172a',
     icons: [
       {
         src: '/icon.svg',

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight, HelpCircle, X, Home } from 'lucide-react'
@@ -59,11 +59,18 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
 
   const totalSlides = presentation.slides.length
 
+  // Loading state
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 100)
+    return () => clearTimeout(t)
+  }, [])
+
   // Get initial slide from URL or default to 0
   const getInitialSlide = useCallback(() => {
     const slideParam = searchParams.get('slide')
     if (slideParam) {
-      const slideIndex = parseInt(slideParam, 10) - 1 // URL is 1-based, state is 0-based
+      const slideIndex = parseInt(slideParam, 10) - 1
       if (!isNaN(slideIndex) && slideIndex >= 0 && slideIndex < totalSlides) {
         return slideIndex
       }
@@ -73,6 +80,8 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
 
   const [currentSlide, setCurrentSlide] = useState(getInitialSlide)
   const [showHelp, setShowHelp] = useState(false)
+  const [slideDirection, setSlideDirection] = useState<'next' | 'prev'>('next')
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   // Sync state when URL changes (browser back/forward)
   useEffect(() => {
@@ -84,16 +93,21 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
 
   // Sync URL when slide changes
   const updateURL = useCallback((index: number) => {
-    const newURL = `${pathname}?slide=${index + 1}` // URL is 1-based
+    const newURL = `${pathname}?slide=${index + 1}`
     router.replace(newURL, { scroll: false })
   }, [pathname, router])
 
   const goToSlide = useCallback((index: number) => {
-    if (index >= 0 && index < totalSlides) {
-      setCurrentSlide(index)
-      updateURL(index)
+    if (index >= 0 && index < totalSlides && !isTransitioning) {
+      setSlideDirection(index > currentSlide ? 'next' : 'prev')
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentSlide(index)
+        updateURL(index)
+        setTimeout(() => setIsTransitioning(false), 300)
+      }, 150)
     }
-  }, [totalSlides, updateURL])
+  }, [totalSlides, updateURL, currentSlide, isTransitioning])
 
   const nextSlide = useCallback(() => {
     goToSlide(currentSlide + 1)
@@ -140,163 +154,183 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
   }, [nextSlide, prevSlide, goToSlide, totalSlides])
 
   // Touch/swipe navigation
-  const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = useState<number | null>(null)
-
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const touchEndRef = useRef<{ x: number } | null>(null)
   const minSwipeDistance = 50
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
-    setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientX)
+    touchEndRef.current = null
+    touchStartRef.current = {
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY,
+    }
   }, [])
 
   const onTouchMove = useCallback((e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
+    touchEndRef.current = { x: e.targetTouches[0].clientX }
   }, [])
 
   const onTouchEnd = useCallback(() => {
-    if (!touchStart || !touchEnd) return
-    const distance = touchStart - touchEnd
+    if (!touchStartRef.current || !touchEndRef.current) return
+    const distance = touchStartRef.current.x - touchEndRef.current.x
     if (Math.abs(distance) >= minSwipeDistance) {
-      if (distance > 0) {
-        nextSlide()
-      } else {
-        prevSlide()
-      }
+      if (distance > 0) nextSlide()
+      else prevSlide()
     }
-    setTouchStart(null)
-    setTouchEnd(null)
-  }, [touchStart, touchEnd, nextSlide, prevSlide])
+    touchStartRef.current = null
+    touchEndRef.current = null
+  }, [nextSlide, prevSlide])
 
   const slide = presentation.slides[currentSlide]
+  const progress = ((currentSlide + 1) / totalSlides) * 100
 
   return (
     <div
-      className="relative h-screen w-screen bg-slate-900 overflow-hidden select-none"
+      className="relative h-[100dvh] w-screen bg-slate-900 overflow-hidden select-none"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {/* Main Slide Content with Fade Animation */}
+      {/* Initial loading overlay */}
+      <div
+        className="absolute inset-0 bg-slate-900 z-50 flex items-center justify-center pointer-events-none transition-opacity duration-700"
+        style={{ opacity: loaded ? 0 : 1 }}
+      >
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-8 h-8 border-2 border-slate-700 border-t-white rounded-full animate-spin" />
+        </div>
+      </div>
+
+      {/* Progress bar */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] z-40 bg-white/[0.05]">
+        <div
+          className="h-full bg-white/30 transition-all duration-500 ease-out"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
+      {/* Main Slide Content */}
       <div
         key={currentSlide}
-        className="h-full w-full animate-fade-in"
+        className="h-full w-full transition-all duration-300 ease-out"
+        style={{
+          opacity: isTransitioning ? 0 : 1,
+          transform: isTransitioning
+            ? `translateX(${slideDirection === 'next' ? '8px' : '-8px'})`
+            : 'translateX(0)',
+        }}
       >
         {renderSlide(slide, presentation.slides)}
       </div>
 
-      {/* Navigation Arrows (hidden on mobile, swipe used instead) */}
+      {/* Navigation Arrows - hidden on mobile */}
       <button
         onClick={prevSlide}
         disabled={currentSlide === 0}
-        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed items-center justify-center transition-all"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/[0.06] hover:bg-white/[0.12] disabled:opacity-0 disabled:pointer-events-none items-center justify-center transition-all duration-200 backdrop-blur-sm"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="w-6 h-6 text-white" />
+        <ChevronLeft className="w-5 h-5 text-white/70" />
       </button>
 
       <button
         onClick={nextSlide}
         disabled={currentSlide === totalSlides - 1}
-        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed items-center justify-center transition-all"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/[0.06] hover:bg-white/[0.12] disabled:opacity-0 disabled:pointer-events-none items-center justify-center transition-all duration-200 backdrop-blur-sm"
         aria-label="Next slide"
       >
-        <ChevronRight className="w-6 h-6 text-white" />
+        <ChevronRight className="w-5 h-5 text-white/70" />
       </button>
 
       {/* Bottom Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-14 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-2 md:px-6 overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 h-12 sm:h-14 bg-slate-950/80 backdrop-blur-md flex items-center justify-between px-3 sm:px-6 overflow-hidden z-30">
         {/* Home button & Slide Counter */}
-        <div className="flex items-center gap-2 md:gap-4 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <Link
             href="/"
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
+            className="w-8 h-8 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] flex items-center justify-center transition-all duration-200"
             aria-label="Retour à l'accueil"
           >
-            <Home className="w-4 h-4 text-white" />
+            <Home className="w-4 h-4 text-white/70" />
           </Link>
-          <div className="text-slate-400 text-xs md:text-sm whitespace-nowrap">
-            {currentSlide + 1} / {totalSlides}
+          <div className="text-slate-500 text-xs tabular-nums">
+            {currentSlide + 1}<span className="text-slate-600">/</span>{totalSlides}
           </div>
         </div>
 
         {/* Dot Navigation */}
-        <div className="flex items-center gap-1 md:gap-1.5 overflow-x-auto mx-2 scrollbar-hide">
+        <div className="flex items-center gap-[3px] sm:gap-1.5 overflow-x-auto mx-2 scrollbar-hide">
           {presentation.slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all shrink-0 ${
+              className={`h-1.5 rounded-full transition-all duration-300 shrink-0 ${
                 index === currentSlide
-                  ? 'w-6 bg-red-500'
-                  : 'w-2 bg-slate-600 hover:bg-slate-500'
+                  ? 'w-5 sm:w-6 bg-white/60'
+                  : index < currentSlide
+                    ? 'w-1.5 bg-white/20 hover:bg-white/30'
+                    : 'w-1.5 bg-white/[0.08] hover:bg-white/20'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
 
-        {/* Keyboard hint & Help */}
-        <div className="flex items-center gap-2 md:gap-4 shrink-0">
-          <span className="text-slate-500 text-sm hidden md:block">
-            {'Utilisez ← → ou Espace pour naviguer'}
+        {/* Help */}
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+          <span className="text-slate-600 text-xs hidden lg:block">
+            ← → Espace
           </span>
           <button
             onClick={() => setShowHelp(true)}
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
+            className="w-8 h-8 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] flex items-center justify-center transition-all duration-200"
             aria-label="Show help"
           >
-            <HelpCircle className="w-4 h-4 text-white" />
+            <HelpCircle className="w-4 h-4 text-white/70" />
           </button>
         </div>
       </div>
 
       {/* Help Modal */}
       {showHelp && (
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-slate-800 rounded-xl p-8 max-w-md w-full mx-4 relative">
+        <div
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-50"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowHelp(false) }}
+        >
+          <div className="bg-slate-900 border border-white/[0.08] rounded-t-2xl sm:rounded-xl p-6 sm:p-8 w-full sm:max-w-md sm:mx-4 relative animate-fade-in">
             <button
               onClick={() => setShowHelp(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] flex items-center justify-center transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 text-slate-400" />
             </button>
-            
-            <h3 className="text-xl font-bold text-white mb-6">Raccourcis clavier</h3>
-            
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-slate-300">Diapositive suivante</span>
-                <div className="flex gap-2">
-                  <kbd className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">→</kbd>
-                  <kbd className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">↓</kbd>
-                  <kbd className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">Espace</kbd>
+
+            <h3 className="text-lg font-semibold text-white mb-6">Raccourcis clavier</h3>
+
+            <div className="space-y-3">
+              {[
+                { label: 'Suivante', keys: ['→', '↓', 'Espace'] },
+                { label: 'Précédente', keys: ['←', '↑'] },
+                { label: 'Première', keys: ['Home'] },
+                { label: 'Dernière', keys: ['End'] },
+                { label: 'Aide', keys: ['?'] },
+              ].map(({ label, keys }) => (
+                <div key={label} className="flex justify-between items-center">
+                  <span className="text-sm text-slate-400">{label}</span>
+                  <div className="flex gap-1.5">
+                    {keys.map(k => (
+                      <kbd key={k} className="px-2 py-1 bg-white/[0.06] border border-white/[0.08] rounded text-xs text-slate-300 font-mono">
+                        {k}
+                      </kbd>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-slate-300">Diapositive précédente</span>
-                <div className="flex gap-2">
-                  <kbd className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">←</kbd>
-                  <kbd className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">↑</kbd>
-                </div>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-slate-300">Première diapositive</span>
-                <kbd className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">Home</kbd>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-slate-300">Dernière diapositive</span>
-                <kbd className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">End</kbd>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-slate-300">Aide</span>
-                <kbd className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">?</kbd>
-              </div>
+              ))}
             </div>
-            
-            <div className="mt-8 pt-6 border-t border-slate-700">
-              <p className="text-sm text-slate-400">
-                Vous pouvez également cliquer sur les flèches ou les points de navigation en bas de l&apos;écran.
+
+            <div className="mt-6 pt-4 border-t border-white/[0.06]">
+              <p className="text-xs text-slate-500">
+                Sur mobile, glissez horizontalement pour naviguer.
               </p>
             </div>
           </div>

@@ -9,23 +9,23 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Slide.io',
-    template: '%s | Slide.io',
+    default: 'Ataraxis',
+    template: '%s | Ataraxis',
   },
   description: 'Créez et partagez des présentations interactives',
   metadataBase: new URL('https://slide-io.vercel.app'),
-  keywords: ['présentation', 'slides', 'diaporama', 'slide.io'],
-  authors: [{ name: 'Slide.io' }],
+  keywords: ['présentation', 'slides', 'diaporama', 'Ataraxis'],
+  authors: [{ name: 'Ataraxis' }],
   openGraph: {
-    title: 'Slide.io',
+    title: 'Ataraxis',
     description: 'Créez et partagez des présentations interactives',
-    siteName: 'Slide.io',
+    siteName: 'Ataraxis',
     locale: 'fr_FR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Slide.io',
+    title: 'Ataraxis',
     description: 'Créez et partagez des présentations interactives',
   },
   icons: {

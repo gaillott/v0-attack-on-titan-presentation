@@ -1,120 +1,83 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { getAllPresentations } from '@/lib/slides/presentations'
-import { Play, Calendar, User, FileText } from 'lucide-react'
+import { BookOpen, ArrowRight } from 'lucide-react'
 
 export default function Home() {
   const presentations = getAllPresentations()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-[100dvh] bg-slate-900 flex flex-col items-center justify-center px-6 overflow-hidden">
+      {/* Subtle background grain */}
+      <div className="fixed inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }} />
+
+      {/* Ambient glow */}
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-800/30 rounded-full blur-[120px] pointer-events-none" />
+
       {/* Header */}
-      <header className="border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Slide.io
-          </h1>
-          <p className="text-slate-400 mt-2">
-            Un outil pour créer des présentation maison.
-          </p>
-        </div>
-      </header>
+      <div
+        className="relative transition-all duration-700 ease-out"
+        style={{
+          opacity: mounted ? 1 : 0,
+          transform: mounted ? 'translateY(0)' : 'translateY(-20px)',
+        }}
+      >
+        <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          Ataraxis
+        </h1>
+        <div className="mt-2 h-px w-12 mx-auto bg-gradient-to-r from-transparent via-slate-500 to-transparent" />
+      </div>
 
-      {/* Presentations Grid */}
-      <main className="max-w-7xl mx-auto px-6 py-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {presentations.map((presentation) => (
-            <Link 
-              key={presentation.id} 
-              href={`/presentation/${presentation.id}`}
-              className="group"
-            >
-              <article className="bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden hover:border-slate-600 hover:bg-slate-800 transition-all duration-200">
-                {/* Cover Image */}
-                <div className="relative aspect-video bg-slate-800 overflow-hidden">
-                  {presentation.coverImage ? (
-                    <Image
-                      src={presentation.coverImage || "/placeholder.svg"}
-                      alt={presentation.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-900">
-                      <FileText className="w-12 h-12 text-slate-500" />
-                    </div>
-                  )}
-                  
-                  {/* Play overlay */}
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="w-14 h-14 bg-red-500 rounded-full flex items-center justify-center">
-                      <Play className="w-6 h-6 text-white ml-1" />
-                    </div>
-                  </div>
+      {/* Presentations list */}
+      <div className="relative mt-12 sm:mt-16 w-full max-w-md flex flex-col gap-2">
+        {presentations.map((presentation, i) => (
+          <Link
+            key={presentation.id}
+            href={`/presentation/${presentation.id}`}
+            className="group relative flex items-center gap-4 px-5 py-4 rounded-xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.04] hover:border-white/[0.1] transition-all duration-300"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? 'translateY(0)' : 'translateY(16px)',
+              transitionDelay: `${150 + i * 80}ms`,
+              transitionProperty: 'opacity, transform, background-color, border-color',
+              transitionDuration: '500ms, 500ms, 300ms, 300ms',
+            }}
+          >
+            <span className="w-10 h-10 bg-white/[0.06] group-hover:bg-white/[0.1] rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+              <BookOpen className="w-[18px] h-[18px] text-slate-400 group-hover:text-white transition-colors duration-300" />
+            </span>
+            <div className="flex-1 min-w-0">
+              <span className="text-[15px] text-slate-300 group-hover:text-white transition-colors duration-300 block truncate">
+                {presentation.title}
+              </span>
+              {presentation.description && (
+                <span className="text-xs text-slate-500 group-hover:text-slate-400 transition-colors duration-300 block truncate mt-0.5">
+                  {presentation.description}
+                </span>
+              )}
+            </div>
+            <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all duration-300 flex-shrink-0" />
+          </Link>
+        ))}
+      </div>
 
-                  {/* Slide count badge */}
-                  <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-md">
-                    <span className="text-white text-sm font-medium">
-                      {presentation.slides.length} slides
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-5">
-                  <h2 className="text-xl font-semibold text-white group-hover:text-red-400 transition-colors line-clamp-2">
-                    {presentation.title}
-                  </h2>
-                  
-                  {presentation.description && (
-                    <p className="text-slate-400 text-sm mt-2 line-clamp-2">
-                      {presentation.description}
-                    </p>
-                  )}
-
-                  {/* Meta info */}
-                  <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-slate-500">
-                    {presentation.author && (
-                      <div className="flex items-center gap-1.5">
-                        <User className="w-4 h-4" />
-                        <span>{presentation.author}</span>
-                      </div>
-                    )}
-                    {presentation.createdAt && (
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="w-4 h-4" />
-                        <span>{new Date(presentation.createdAt).toLocaleDateString('fr-FR')}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {presentations.length === 0 && (
-          <div className="text-center py-20">
-            <FileText className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-slate-300">
-              Aucune présentation
-            </h2>
-            <p className="text-slate-500 mt-2">
-              Ajoutez des présentations pour les voir apparaître ici.
-            </p>
-          </div>
-        )}
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-800 mt-auto">
-        <div className="max-w-7xl mx-auto px-6 py-6 text-center text-slate-500 text-sm">
-          Utilisez les flèches ou Espace pour naviguer dans les présentations
-        </div>
-      </footer>
+      {/* Footer hint */}
+      <p
+        className="relative mt-12 text-xs text-slate-600 transition-all duration-700"
+        style={{
+          opacity: mounted ? 1 : 0,
+          transitionDelay: '600ms',
+        }}
+      >
+        {presentations.length} {presentations.length > 1 ? 'presentations' : 'presentation'}
+      </p>
     </div>
   )
 }
