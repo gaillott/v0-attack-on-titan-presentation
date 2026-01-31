@@ -26,11 +26,12 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'red',
       blocks: [
-        { type: 'heading', data: { category: 'SYNOPSIS', title: "L'Attaque des Titans" , image: '/aot/wall.jpg' } },
+        { type: 'heading', data: { category: 'SYNOPSIS', title: "L'Attaque des Titans" , subtitle : 'Une oeuvre profondément philosophique', image: '/aot/wall.jpg' } },
         {
           type: 'text',
+          step : 1,
           data: {
-            highlightedText: 'Une humanité enfermée derrière trois murs immenses.',
+            highlightedText: 'L\'humanité est enfermée derrière trois murs immenses.',
             content: "Depuis plus d'un siècle, les derniers humains vivent retranchés, protégés de créatures géantes — les Titans — qui dévorent les hommes sans raison apparente. Personne ne sait ce qu'il y a au-delà."
           }
         },
@@ -38,38 +39,25 @@ export const attackOnTitanPresentation: Presentation = {
          {
           type: 'bullets',
           column: "left",
+           step : 1,
           data: {
             items: [
-              'Les habitants ignorent tout du monde extérieur — leur mémoire a été effacée',
+              'Les habitants ignorent tout du monde extérieur',
               'Le gouvernement maintient l\'ordre par le secret et la peur',
               'La plupart acceptent cette vie, préférant le confort à la vérité'
             ]
           }
         },
-        { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S01E01 — A toi qui vis 2000 ans plus tard' }] } },
-         
-        {
-          type: 'text',
-          step: 1,
-          column: "right",
-          data: {
-            highlightedText: 'Un jour, un Titan colossal détruit le mur.',
-            content: " L'illusion de sécurité s'effondre. Eren Jäger, un jeune garçon, voit sa mère se faire dévorer. Il jure de tous les exterminer. Avec ses amis, il rejoint le Bataillon d'exploration — les seuls qui osent sortir des murs pour chercher la vérité."
-          }
-        },
-       
+        { type: 'videos', step : 1, column: 'left', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S01E01 — A toi qui vis 2000 ans plus tard' }] } },
         {
           type: 'card',
-          step: 1,
+          step: 2,
           column: 'right',
           data: {
-            title: 'Ce que cache cette histoire',
-            content: "Derrière l'action, Isayama interroge la liberté, la propagande, la violence et la conscience. C'est ce que nous allons explorer.",
-            highlight: 'Une œuvre profondément philosophique'
+            title: 'Eren, une aventure philosophique',
+            content: "Derrière l'action, Isayama interroge nos choix de vie et notre idéal.",
           }
         },
-        { type: 'image', column: 'left', step: 2, data: { src: '/aot/eldia.webp', alt: 'Les murs de Paradis' } },
-
       ]
     },
 
@@ -154,38 +142,49 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'red',
       blocks: [
-        { type: 'heading', data: { category: 'ALLÉGORIE PHILOSOPHIQUE', title: 'Paradis : La Caverne de Platon' } },
-        {
-          type: 'text',
-          data: {
-            highlightedText: 'Pendant que le monde se fait la guerre',
-            content: ', Paradis vit en paix, en autarcie, ignorant...'
-          }
-        },
+        { type: 'heading', data: { category: 'ALLÉGORIE PHILOSOPHIQUE', title: 'La Caverne de Platon', image: '/aot/wall3.jpg' } },
         {
           type: 'quote',
           data: {
-            text: "Comme les prisonniers de la caverne de Platon, le peuple de Paradis ne connaît que les ombres projetées sur les murs. Les trois enceintes ne sont pas seulement des remparts contre les Titans, mais les parois d'une prison mentale."
+            text: "Est-on vraiment libre, si on est enchaîné par des chaînes que l'on ne voit plus ?"
           }
         },
         {
-          type: 'bullets',
+          type: 'text',
           data: {
-            items: [
-              "L'ignorance comme protection : Karl Fritz a effacé les mémoires pour créer un paradis artificiel",
-              "La vérité douloureuse : Sortir de la caverne signifie découvrir une réalité insupportable",
-              "Le refus de savoir : La majorité préfère le confort de l'illusion à la liberté de la connaissance"
-            ]
+            highlightedText: "Le peuple de Paradis ne connaît que les ombres projetées sur les murs.",
+            content: " Les trois enceintes ne sont pas seulement des remparts contre les Titans — ce sont les parois d'une prison mentale. Leur mémoire a été effacée. Ils ne savent même pas qu'ils sont prisonniers."
           }
         },
         { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/caverne_verite.mp4', title: 'S3E20 (Ep57) — Révélation du sous-sol' }] } },
         {
-          type: 'image',
+          type: 'card',
+          step: 1,
+          data: {
+            title: 'Et nous ?',
+            content: '',
+            highlight: 'Confort ou Liberté ?'
+          }
+        },
+        {
+          type: 'icon-bullets',
+          step: 2,
           column: 'right',
           data: {
-            src: '/aot/wall3.jpg',
-            alt: 'Les murs de Paradis',
-            caption: '"Que préférez-vous : vivre dans une cage dorée ou mourir libre ?"'
+            items: [
+              { icon: 'scale', title: 'Brigades Spéciales', content: 'Protègent le Roi et l\'ordre établi — gardiens de la caverne' },
+              { icon: 'users', title: 'Garnison', content: 'Défendent les murs — maintiennent le statu quo' },
+              { icon: 'compass', title: 'Bataillon d\'exploration', content: 'Les seuls qui sortent des murs — chercheurs de vérité' }
+            ]
+          }
+        },
+        {
+          type: 'image',
+          step: 2,
+          column: 'right',
+          data: {
+            src: '/aot/corpsarmee.webp',
+            alt: 'Les trois corps d\'armée'
           }
         }
       ]
