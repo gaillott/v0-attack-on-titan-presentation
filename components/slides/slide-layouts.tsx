@@ -12,6 +12,7 @@ import type {
   SlideVideo
 } from '@/lib/slides/types'
 import { Compass, Heart, Flame, Play, Globe, Users, Scale, AlertCircle } from 'lucide-react'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 // Theme colors mapping
 const themeColors: Record<SlideTheme, { primary: string; accent: string; border: string; bg: string }> = {
@@ -51,18 +52,26 @@ export function EmbeddedVideos({ videos, theme }: { videos: SlideVideo[]; theme:
   }
 
   return (
-    <div className="flex gap-2 flex-wrap">
-      {videos.map((video, i) => (
-        <button
-          key={i}
-          onClick={() => handlePlay(video.url)}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${theme.border} ${theme.bg} hover:brightness-125 transition-all cursor-pointer`}
-        >
-          <Play className={`w-3.5 h-3.5 ${theme.primary}`} fill="currentColor" />
-          <span className="text-xs text-slate-300 truncate max-w-[350px]">{video.title}</span>
-        </button>
-      ))}
-    </div>
+    <TooltipProvider delayDuration={300}>
+      <div className="flex gap-2 flex-wrap">
+        {videos.map((video, i) => (
+          <Tooltip key={i}>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => handlePlay(video.url)}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${theme.border} ${theme.bg} hover:brightness-125 transition-all cursor-pointer`}
+              >
+                <Play className={`w-3.5 h-3.5 ${theme.primary}`} fill="currentColor" />
+                <span className="text-xs text-slate-300 truncate max-w-[350px]">{video.title}</span>
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{video.title}</p>
+            </TooltipContent>
+          </Tooltip>
+        ))}
+      </div>
+    </TooltipProvider>
   )
 }
 
@@ -290,9 +299,10 @@ function BlockRenderer({ block, theme }: { block: ContentBlock; theme: ReturnTyp
     }
     case 'parallels': {
       const d = block.data
+      const singleItem = d.items.length === 1
       return (
-        <div className="md:col-span-2">
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className={singleItem ? '' : 'md:col-span-2'}>
+          <div className={`${singleItem ? 'space-y-4' : 'grid md:grid-cols-2 gap-6 mb-8'}`}>
             {d.items.map((parallel, i) => {
               const IconComponent = iconMap[parallel.icon] || Globe
               return (

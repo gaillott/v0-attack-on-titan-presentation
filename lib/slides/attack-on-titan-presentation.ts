@@ -298,7 +298,7 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'blue',
       blocks: [
-        { type: 'heading', data: { category: 'PORTRAIT • LA BHAGAVAD GÎTA', title: 'Eren : Combat Intérieur', subtitle: 'Quand l\'homme tombe à genoux' } },
+        { type: 'heading', data: { image:'/aot/eren.jpeg',category: 'PORTRAIT • LA BHAGAVAD GÎTA', title: 'Eren : Combat Intérieur', subtitle: 'Quand l\'homme tombe à genoux' } },
         {
           type: 'text',
           data: {
@@ -313,26 +313,26 @@ export const attackOnTitanPresentation: Presentation = {
             author: 'Arjuna — Bhagavad Gîta, Chant I'
           }
         },
-        { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/s2e12_eren_combat_interieur.mp4', title: 'S2E12 (Ep37) — Eren à genoux, impuissant' }] } },
-        {
-          type: 'cards',
+        { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/s2e12_eren_combat_interieur.mp4', title: 'S2E12 (Ep37) — Hannes en danger contre le titan qui a tué la mère d\'Eren.' }] } },
+         {
+          type: 'quote',
+           step : 1,
           column: 'right',
           data: {
+            text: '"Tu t\'apitoies là où il ne faut pas. Les sages ne pleurent ni les vivants ni les morts. Lève-toi, fils de Kuntî, et combats."',
+            author: 'Krishna à Arjuna,  Bhagavad Gîta, Chant II, v.11 & v.37'
+          }
+        },
+        {
+          type: 'bullets',
+          step: 1,
+          column : 'right',
+          data: {
             items: [
-              {
-                title: 'Krishna à Arjuna',
-                content: '"Tu t\'apitoies là où il ne faut pas. Les sages ne pleurent ni les vivants ni les morts. Lève-toi, fils de Kuntî, et combats."',
-                highlight: 'Lève-toi et combats',
-                subtext: 'Bhagavad Gîta, Chant II, v.11 & v.37'
-              },
-              {
-                title: 'Un combat à l\'intérieur en nous',
-                content: 'Nos défauts, nos défaites, nos mauvais désirs nous hantent. Ils nous attaquent pour nous empêcher de faire notre devoir.',
-                highlight: 'Conscience vs  Personnalité'
-              }
+              'Qu\'est ce qui a changé chez Eren ?',
             ]
           }
-        }
+        },
       ]
     },
 
@@ -342,32 +342,35 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'blue',
       blocks: [
-        { type: 'heading', data: { category: 'PORTRAIT • L\'HUMANITÉ', title: 'Jean Kirschtein', subtitle: 'L\'Homme Ordinaire qui agit extraordinairement' } },
-        {
-          type: 'section',
+        { type: 'heading', data: {image:'/aot/jean.jpg', category: 'PORTRAIT • L\'HUMANITÉ', title: 'Jean Kirschtein', subtitle: 'L\'Homme Ordinaire qui agit extraordinairement' } },
+                { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/s4e8_jean_sasha.mp4', title: 'S4E8 — Une guerre où des enfants tue des hommes' }] } },
+{
+          type: 'bullets',
+          column : 'left',
           data: {
-            title: 'L\'éveil de la conscience',
-            content: "Jean rêvait des Brigades Spéciales : une vie tranquille à l'intérieur des murs. Il n'a aucun idéal, aucune rage, aucun pouvoir spécial. Quand Marco meurt, il ne se transforme pas en héros — il se retrouve simplement seul avec sa conscience. Et il choisit de ne pas fuir."
+            items: [
+              'Il rêvait de la tranquilité',
+              "La mort de Marco et l\'éveil de sa conscience",
+              'Celui qui écoute sa conscience plutôt que sa peur'
+            ]
           }
         },
         {
           type: 'section',
           step: 1,
+          column : 'right',
           data: {
             title: 'Le meilleur de l\'humanité',
-            content: "Jean est tiraillé en permanence. Il a peur, il doute, il voudrait fuir. Mais à chaque croisement, il choisit d'écouter sa conscience plutôt que sa peur. Il ne tue pas Gaby — celle qui a tué Sasha — parce que ce ne serait pas juste. Jean représente ce que l'on peut faire de mieux en tant qu'humain : agir bien, avec nos doutes et nos faiblesses."
+            content: ""
           }
         },
-        { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/s4e8_jean_sasha.mp4', title: 'S4E8 — Mort de Sasha' }] } },
         {
-          type: 'card',
+          type: 'quote',
           step: 1,
           column: 'right',
           data: {
-            title: 'Aristote — Éthique à Nicomaque',
-            content: '"C\'est en pratiquant les actions justes que nous devenons justes, les actions tempérantes que nous devenons tempérants, les actions courageuses que nous devenons courageux."',
-            highlight: 'Devenir juste en agissant justement',
-            subtext: 'Livre II, chap. 1 — On ne naît pas bon. On le devient par ses actes.'
+            author: 'Aristote — Éthique à Nicomaque',
+            text: '"C\'est en pratiquant les actions justes que nous devenons justes, les actions tempérantes que nous devenons tempérants, les actions courageuses que nous devenons courageux."',
           }
         }
       ]
@@ -495,45 +498,54 @@ export const attackOnTitanPresentation: Presentation = {
       theme: 'red',
       blocks: [
         { type: 'heading', data: { title: "Les Leçons d'Isayama", subtitle: "Ce que l'Attaque des Titans nous enseigne" } },
-        {
-          type: 'videos',
+       
+          {
+          type: 'videos', 
           data: {
             items: [
               { url: '/aot/video/mywar.mp4', title: 'Générique saison finale — My War' },
-              { url: '/aot/video/e87_eren_grand_terassement.mp4', title: 'S4E28 (Ep87) - Grand Terassement' }
             ]
           }
         },
         {
-          type: 'parallels',
+          type: 'parallels',  
           data: {
             items: [
               {
                 icon: 'alert',
                 title: "L'Absurdité de la Guerre",
                 anime: "L'ennemi n'est plus le Titan, mais l'homme de l'autre côté de la mer — puis son propre voisin. La déshumanisation engendre l'escalade.",
-                realWorld: "\"On se battait contre des gens comme nous.\" La guerre crée des monstres des deux côtés — Gaby et Eren sont le miroir l'un de l'autre."
+                realWorld: "Militarisation et guerres en Europe, partis extrêmistes."
               },
+            ],
+                    }
+        },
+         {
+          type : 'quote', step : 1,
+          data : {
+            text : '"Cette guerre, on ne savait pas pourquoi on la faisait. On se battait contre des gens comme nous.\" ',
+            author : "Lazare Ponticelli, dernier poilu français"
+          }
+        },
+         {
+          type: 'videos', step : 2, column : 'right',
+          data: {
+            items: [
+              { url: '/aot/video/e87_eren_grand_terassement.mp4', title: 'S4E28 (Ep87) - Grand Terassement' }
+            ]
+          }
+        },
+        {
+          type: 'parallels', step : 2, column : 'right',
+          data: {
+            items: [
               {
                 icon: 'flame',
                 title: "La Liberté Absolue Détruit",
                 anime: "Eren, Surhomme nietzschéen, brise toutes les chaînes — mais sa liberté absolue mène au Grand Terrassement, la destruction totale.",
-                realWorld: "Une liberté sans conscience ni limites morales devient la pire des tyrannies. La volonté de puissance sans sagesse est auto-destructrice."
-              },
-              {
-                icon: 'heart',
-                title: 'Le Combat Intérieur et la Conscience',
-                anime: "Jean choisit d'écouter sa conscience plutôt que sa peur. Il ne tue pas Gaby. Il combat ses propres démons avant de combattre l'ennemi.",
-                realWorld: "Comme Arjuna dans la Bhagavad Gîta, le vrai combat est intérieur. Suivre sa conscience — même quand le monde entier dit le contraire — c'est le premier acte de liberté."
-              },
-              {
-                icon: 'users',
-                title: 'Briser le Cercle, Créer un Cercle Vertueux',
-                anime: "Le père de Sasha refuse de tuer Gaby — il brise le cycle de la vengeance. L'humanisme n'est pas une faiblesse, c'est un choix courageux.",
-                realWorld: "On ne naît pas bon, on le devient par ses actes (Aristote). Chaque acte de conscience crée un cercle vertueux — chaque acte de haine relance le cercle vicieux."
+                realWorld: "Liberté de consommer, liberté d'affirmation, liberté d'être, ... Ne faut-il pas une limite ?"
               }
             ],
-            bottomQuote: "\"Cette guerre, on ne savait pas pourquoi on la faisait. On se battait contre des gens comme nous.\" — Lazare Ponticelli, dernier poilu français"
           }
         }
       ]
