@@ -5,15 +5,11 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight, HelpCircle, X, Home } from 'lucide-react'
 import type { Presentation, Slide } from '@/lib/slides/types'
+import { getMaxStep } from '@/lib/slides/types'
 import {
   TitleSlideLayout,
   SectionSlideLayout,
   ContentSlideLayout,
-  TimelineSlideLayout,
-  VideoSlideLayout,
-  TwoColumnSlideLayout,
-  QuotesGridSlideLayout,
-  ParallelsSlideLayout,
   PlanSlideLayout
 } from './slide-layouts'
 
@@ -27,24 +23,14 @@ function getAllSections(slides: Slide[]) {
     .map(s => ({ partNumber: s.partNumber, subtitle: s.subtitle }))
 }
 
-function renderSlide(slide: Slide, allSlides: Slide[]) {
+function renderSlide(slide: Slide, allSlides: Slide[], visibleStep: number) {
   switch (slide.type) {
     case 'title':
       return <TitleSlideLayout slide={slide} />
     case 'section':
       return <SectionSlideLayout slide={slide} allSections={getAllSections(allSlides)} />
     case 'content':
-      return <ContentSlideLayout slide={slide} />
-    case 'timeline':
-      return <TimelineSlideLayout slide={slide} />
-    case 'video':
-      return <VideoSlideLayout slide={slide} />
-    case 'two-column':
-      return <TwoColumnSlideLayout slide={slide} />
-    case 'quotes-grid':
-      return <QuotesGridSlideLayout slide={slide} />
-    case 'parallels':
-      return <ParallelsSlideLayout slide={slide} />
+      return <ContentSlideLayout slide={slide} visibleStep={visibleStep} />
     case 'plan':
       return <PlanSlideLayout slide={slide} />
     default:
@@ -79,15 +65,20 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
   }, [searchParams, totalSlides])
 
   const [currentSlide, setCurrentSlide] = useState(getInitialSlide)
+  const [currentStep, setCurrentStep] = useState(0)
   const [showHelp, setShowHelp] = useState(false)
   const [slideDirection, setSlideDirection] = useState<'next' | 'prev'>('next')
   const [isTransitioning, setIsTransitioning] = useState(false)
+
+  const slide = presentation.slides[currentSlide]
+  const maxStep = getMaxStep(slide)
 
   // Sync state when URL changes (browser back/forward)
   useEffect(() => {
     const slideFromURL = getInitialSlide()
     if (slideFromURL !== currentSlide) {
       setCurrentSlide(slideFromURL)
+      setCurrentStep(0)
     }
   }, [searchParams, getInitialSlide]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -103,19 +94,46 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
       setIsTransitioning(true)
       setTimeout(() => {
         setCurrentSlide(index)
+        setCurrentStep(0)
         updateURL(index)
         setTimeout(() => setIsTransitioning(false), 300)
       }, 150)
     }
   }, [totalSlides, updateURL, currentSlide, isTransitioning])
 
-  const nextSlide = useCallback(() => {
-    goToSlide(currentSlide + 1)
-  }, [currentSlide, goToSlide])
+  const nextAction = useCallback(() => {
+    if (isTransitioning) return
+    // If there are more steps to reveal, advance step
+    if (currentStep < maxStep) {
+      setCurrentStep(currentStep + 1)
+    } else {
+      // All steps revealed, go to next slide
+      goToSlide(currentSlide + 1)
+    }
+  }, [currentSlide, currentStep, maxStep, goToSlide, isTransitioning])
 
-  const prevSlide = useCallback(() => {
-    goToSlide(currentSlide - 1)
-  }, [currentSlide, goToSlide])
+  const prevAction = useCallback(() => {
+    if (isTransitioning) return
+    // If steps are revealed, hide last step
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1)
+    } else {
+      // At step 0, go to previous slide (show all its steps)
+      if (currentSlide > 0) {
+        const prevSlideIndex = currentSlide - 1
+        const prevSlide = presentation.slides[prevSlideIndex]
+        const prevMaxStep = getMaxStep(prevSlide)
+        setSlideDirection('prev')
+        setIsTransitioning(true)
+        setTimeout(() => {
+          setCurrentSlide(prevSlideIndex)
+          setCurrentStep(prevMaxStep)
+          updateURL(prevSlideIndex)
+          setTimeout(() => setIsTransitioning(false), 300)
+        }, 150)
+      }
+    }
+  }, [currentSlide, currentStep, presentation.slides, goToSlide, isTransitioning, updateURL])
 
   // Keyboard navigation
   useEffect(() => {
@@ -125,12 +143,12 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
         case 'ArrowDown':
         case ' ':
           e.preventDefault()
-          nextSlide()
+          nextAction()
           break
         case 'ArrowLeft':
         case 'ArrowUp':
           e.preventDefault()
-          prevSlide()
+          prevAction()
           break
         case 'Home':
           e.preventDefault()
@@ -151,7 +169,7 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [nextSlide, prevSlide, goToSlide, totalSlides])
+  }, [nextAction, prevAction, goToSlide, totalSlides])
 
   // Touch/swipe navigation
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
@@ -174,14 +192,13 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
     if (!touchStartRef.current || !touchEndRef.current) return
     const distance = touchStartRef.current.x - touchEndRef.current.x
     if (Math.abs(distance) >= minSwipeDistance) {
-      if (distance > 0) nextSlide()
-      else prevSlide()
+      if (distance > 0) nextAction()
+      else prevAction()
     }
     touchStartRef.current = null
     touchEndRef.current = null
-  }, [nextSlide, prevSlide])
+  }, [nextAction, prevAction])
 
-  const slide = presentation.slides[currentSlide]
   const progress = ((currentSlide + 1) / totalSlides) * 100
 
   return (
@@ -220,24 +237,24 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
             : 'translateX(0)',
         }}
       >
-        {renderSlide(slide, presentation.slides)}
+        {renderSlide(slide, presentation.slides, currentStep)}
       </div>
 
       {/* Navigation Arrows - hidden on mobile */}
       <button
-        onClick={prevSlide}
-        disabled={currentSlide === 0}
+        onClick={prevAction}
+        disabled={currentSlide === 0 && currentStep === 0}
         className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/[0.06] hover:bg-white/[0.12] disabled:opacity-0 disabled:pointer-events-none items-center justify-center transition-all duration-200 backdrop-blur-sm"
-        aria-label="Previous slide"
+        aria-label="Previous"
       >
         <ChevronLeft className="w-5 h-5 text-white/70" />
       </button>
 
       <button
-        onClick={nextSlide}
-        disabled={currentSlide === totalSlides - 1}
+        onClick={nextAction}
+        disabled={currentSlide === totalSlides - 1 && currentStep >= maxStep}
         className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/[0.06] hover:bg-white/[0.12] disabled:opacity-0 disabled:pointer-events-none items-center justify-center transition-all duration-200 backdrop-blur-sm"
-        aria-label="Next slide"
+        aria-label="Next"
       >
         <ChevronRight className="w-5 h-5 text-white/70" />
       </button>
@@ -255,6 +272,11 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
           </Link>
           <div className="text-slate-500 text-xs tabular-nums">
             {currentSlide + 1}<span className="text-slate-600">/</span>{totalSlides}
+            {maxStep > 0 && (
+              <span className="text-slate-600 ml-1">
+                ({currentStep}<span className="text-slate-700">/</span>{maxStep})
+              </span>
+            )}
           </div>
         </div>
 
@@ -309,8 +331,8 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
 
             <div className="space-y-3">
               {[
-                { label: 'Suivante', keys: ['→', '↓', 'Espace'] },
-                { label: 'Précédente', keys: ['←', '↑'] },
+                { label: 'Suivante / Étape suivante', keys: ['→', '↓', 'Espace'] },
+                { label: 'Précédente / Étape précédente', keys: ['←', '↑'] },
                 { label: 'Première', keys: ['Home'] },
                 { label: 'Dernière', keys: ['End'] },
                 { label: 'Aide', keys: ['?'] },

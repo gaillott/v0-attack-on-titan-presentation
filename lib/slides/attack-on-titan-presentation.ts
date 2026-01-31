@@ -20,7 +20,60 @@ export const attackOnTitanPresentation: Presentation = {
       backgroundImage: '/aot/attackontitanbg.jpg',
     },
 
-    // Slide 2: Introduction - Plan
+    // Slide 2: Synopsis
+    {
+      id: 'synopsis',
+      type: 'content',
+      theme: 'red',
+      blocks: [
+        { type: 'heading', data: { category: 'SYNOPSIS', title: "L'Attaque des Titans" , image: '/aot/wall.jpg' } },
+        {
+          type: 'text',
+          data: {
+            highlightedText: 'Une humanité enfermée derrière trois murs immenses.',
+            content: "Depuis plus d'un siècle, les derniers humains vivent retranchés, protégés de créatures géantes — les Titans — qui dévorent les hommes sans raison apparente. Personne ne sait ce qu'il y a au-delà."
+          }
+        },
+       
+         {
+          type: 'bullets',
+          column: "left",
+          data: {
+            items: [
+              'Les habitants ignorent tout du monde extérieur — leur mémoire a été effacée',
+              'Le gouvernement maintient l\'ordre par le secret et la peur',
+              'La plupart acceptent cette vie, préférant le confort à la vérité'
+            ]
+          }
+        },
+        { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S01E01 — A toi qui vis 2000 ans plus tard' }] } },
+         
+        {
+          type: 'text',
+          step: 1,
+          column: "right",
+          data: {
+            highlightedText: 'Un jour, un Titan colossal détruit le mur.',
+            content: " L'illusion de sécurité s'effondre. Eren Jäger, un jeune garçon, voit sa mère se faire dévorer. Il jure de tous les exterminer. Avec ses amis, il rejoint le Bataillon d'exploration — les seuls qui osent sortir des murs pour chercher la vérité."
+          }
+        },
+       
+        {
+          type: 'card',
+          step: 1,
+          column: 'right',
+          data: {
+            title: 'Ce que cache cette histoire',
+            content: "Derrière l'action, Isayama interroge la liberté, la propagande, la violence et la conscience. C'est ce que nous allons explorer.",
+            highlight: 'Une œuvre profondément philosophique'
+          }
+        },
+        { type: 'image', column: 'left', step: 2, data: { src: '/aot/eldia.webp', alt: 'Les murs de Paradis' } },
+
+      ]
+    },
+
+    // Slide 3: Plan
     {
       id: 'introduction',
       type: 'plan',
@@ -28,37 +81,16 @@ export const attackOnTitanPresentation: Presentation = {
       category: 'PLAN DE LA PRÉSENTATION',
       title: "L'Attaque des Titans",
       subtitle: "Une exploration philosophique de l'œuvre d'Hajime Isayama",
-      description: "À travers l'histoire d'une humanité enfermée derrière des murs, confrontée à des géants mangeurs d'hommes, nous explorerons les thèmes universels de la liberté, de la violence et de la morale.",
       items: [
-        {
-          partNumber: 'PARTIE I',
-          title: 'Paradis : La Caverne de Platon',
-          image: '/aot/wall.webp'
-        },
-        {
-          partNumber: 'PARTIE II',
-          title: "Bataillon d'exploration : Aventure de la conscience",
-          image: '/aot/expo.jpg'
-        },
-        {
-          partNumber: 'PARTIE III',
-          title: 'Portrait : Eren, Jean',
-          image: '/aot/jean.jpg'
-        },
-        {
-          partNumber: 'PARTIE IV',
-          title: 'Gaby : Absurdité de la guerre',
-          image: '/aot/mywar.jpg'
-        },
-        {
-          partNumber: 'PARTIE V',
-          title: "Les Leçons d'Isayama",
-          image: '/aot/putin.jpg'
-        }
+        { partNumber: 'PARTIE I', title: 'Paradis : La Caverne de Platon', image: '/aot/wall.webp' },
+        { partNumber: 'PARTIE II', title: "Bataillon d'exploration : Aventure de la conscience", image: '/aot/expo.jpg' },
+        { partNumber: 'PARTIE III', title: 'Portrait : Eren, Jean', image: '/aot/jean.jpg' },
+        { partNumber: 'PARTIE IV', title: 'Gaby : Absurdité de la guerre', image: '/aot/mywar.jpg' },
+        { partNumber: 'PARTIE V', title: "Les Leçons d'Isayama", image: '/aot/putin.jpg' }
       ]
     },
 
-    // Slide 3: Section - Partie I
+    // Slide 4: Section - Partie I
     {
       id: 'partie-1',
       type: 'section',
@@ -69,122 +101,97 @@ export const attackOnTitanPresentation: Presentation = {
       backgroundImage: '/aot/wall.webp'
     },
 
-    // Slide 4: Contexte Historique (vidéo situation initiale intégrée)
-    {
-      id: 'contexte-historique',
-      type: 'timeline',
-      theme: 'red',
-      title: 'Contexte Historique',
-      videos: [
-        { url: '/aot/video/EP1_00_00.mp4', title: 'EP01 — Situation initiale' }
-      ],
-      events: [
-        {
-          date: '~2000 ans avant',
-          title: 'Ymir Fritz obtient le pouvoir des Titans',
-          description: "Début du cycle de la violence et de l'oppression"
-        },
-        {
-          date: '~1820 ans avant',
-          title: "L'Empire Eldien domine le monde",
-          description: 'Les Titans comme armes de guerre - 1800 ans de terreur'
-        },
-        {
-          date: '~100 ans avant',
-          title: 'La Grande Guerre des Titans',
-          description: 'Karl Fritz, pacifiste, construit les trois murs et efface les mémoires'
-        },
-        {
-          date: 'An 743 - 845',
-          title: 'Paradis vit en paix, en autarcie',
-          description: 'Pendant que le monde se fait la guerre, Paradis ignore tout, prisonnier de sa caverne'
-        },
-        {
-          date: 'An 845',
-          title: 'Chute du Mur Maria',
-          description: "Le Titan Colossal brise l'illusion - réveil brutal de la réalité"
-        }
-      ],
-      image: {
-        src: '/aot/eldia.webp',
-        alt: 'Cimetière symbolisant les morts'
-      },
-      cards: [{
-        title: "L'illusion du sentiment de sécurité",
-        content: "",
-        highlight: 'Fausse sécurité - Illusion - Séparativisme',
-        subtext: "Face à l'actualité et le contexte écologique, nous préférérons vivre heureux, loin des problèmes. Tant que le problème est à un continent près, une frontière près, une ville près, nous ne nous sentons pas concernés. Pourtant, cela ne veut pas dire que la menace est fausse."
-      }]
-    },
-
-    // Slide 6: Hannes (vidéos intégrées)
+    // Slide 5: Hannes
     {
       id: 'hannes',
       type: 'content',
       theme: 'orange',
-      category: 'ARCHÉTYPE DU PEUPLE DE PARADIS',
-      title: 'Hannes',
-      subtitle: 'Le Dernier Homme de Nietzsche',
-      videos: [
-        { url: '/aot/video/EP1_Hannes.mp4', title: 'S1E1 — Hannes ivre, insouciant' },
-        { url: '/aot/video/EP1_Hannes_Actes.mp4', title: 'S1E2 — Hannes paralysé devant le Titan Souriant' }
-      ],
-      sections: [
+      blocks: [
+        { type: 'heading', data: { category: 'ARCHÉTYPE DU PEUPLE DE PARADIS', title: 'Hannes', subtitle: 'Capitaine de la Garnison - Protection du Mur Maria', image: '/aot/hannes.jpg' } },
         {
-          title: 'Le Symbole du Conformisme',
-          content: 'Hannes incarne le "dernier homme" de Nietzsche : celui qui a renoncé à tout idéal, cherchant uniquement le confort et la sécurité.'
-        }
-      ],
-      cards: [
+          type: 'quote',
+          step: 1,
+          data: {
+            text: '"Nous avons inventé le bonheur" — disent les derniers hommes, et ils clignent de l\'œil. Ils ont quitté les contrées où il était dur de vivre : car on a besoin de chaleur. [...] On travaille encore, car le travail est un divertissement. Mais on veille à ce que le divertissement ne fatigue point."',
+            author: 'Friedrich Nietzsche — Ainsi parlait Zarathoustra, Prologue §5'
+          }
+        },
         {
-          title: 'Le "Dernier Homme" — Nietzsche',
-          content: 'Hannes est ce dernier homme : il boit, rit, et refuse de voir la réalité — jusqu\'à ce que la tragédie le rattrape.',
-          highlight: 'Le dernier homme',
-          subtext: ''
-        }
-      ],
-      quote: {
-        text: '"Nous avons inventé le bonheur" — disent les derniers hommes, et ils clignent de l\'œil. Ils ont quitté les contrées où il était dur de vivre : car on a besoin de chaleur. [...] On travaille encore, car le travail est un divertissement. Mais on veille à ce que le divertissement ne fatigue point."',
-        author: 'Friedrich Nietzsche — Ainsi parlait Zarathoustra, Prologue §5'
-      },
-      bulletPointsTitle: '',
-      bulletPoints: [
-        'Préférence pour le confort sur la vérité',
-        'Pour Eren, ce discours est insupportable : la Liberté est un besoin vital'
+          type: 'videos',
+          step: 1,
+          column: 'left',
+          data: {
+            items: [
+              { url: '/aot/video/EP1_Hannes.mp4', title: 'S1E1 — Hannes ivre, insouciant' },
+            ]
+          }
+        },
+        {
+          type: 'card',
+          step: 2,
+          column: 'right',
+          data: {
+            title: 'Isayama nous questionne',
+            content: 'Hannes, une image de l\'homme moderne ?',
+          }
+        },
+         {
+          type: 'videos',
+          step: 2,
+          column: 'right',
+          data: {
+            items: [
+              { url: '/aot/video/EP1_Hannes_Actes.mp4', title: 'S1E2 — Hannes paralysé devant le Titan Souriant' }
+            ]
+          }
+        },
       ]
     },
 
-    // Slide 7: La Caverne de Platon (vidéo intégrée)
+    // Slide 6: La Caverne de Platon
     {
       id: 'caverne-platon',
       type: 'content',
       theme: 'red',
-      category: 'ALLÉGORIE PHILOSOPHIQUE',
-      title: 'Paradis : La Caverne de Platon',
-      videos: [
-        { url: '/aot/video/caverne_verite.mp4', title: 'S3E20 (Ep57) — Révélation du sous-sol' }
-      ],
-      content: {
-        highlightedText: 'Pendant que le monde se fait la guerre',
-        text: ', Paradis vit en paix, en autarcie, ignorant...',
-        quote: {
-          text: "Comme les prisonniers de la caverne de Platon, le peuple de Paradis ne connaît que les ombres projetées sur les murs. Les trois enceintes ne sont pas seulement des remparts contre les Titans, mais les parois d'une prison mentale.",
-          author: ''
+      blocks: [
+        { type: 'heading', data: { category: 'ALLÉGORIE PHILOSOPHIQUE', title: 'Paradis : La Caverne de Platon' } },
+        {
+          type: 'text',
+          data: {
+            highlightedText: 'Pendant que le monde se fait la guerre',
+            content: ', Paradis vit en paix, en autarcie, ignorant...'
+          }
         },
-        bulletPoints: [
-          "L'ignorance comme protection : Karl Fritz a effacé les mémoires pour créer un paradis artificiel",
-          "La vérité douloureuse : Sortir de la caverne signifie découvrir une réalité insupportable",
-          "Le refus de savoir : La majorité préfère le confort de l'illusion à la liberté de la connaissance"
-        ]
-      },
-      image: {
-        src: '/aot/wall3.jpg',
-        alt: 'Les murs de Paradis',
-        caption: '"Que préférez-vous : vivre dans une cage dorée ou mourir libre ?"'
-      }
+        {
+          type: 'quote',
+          data: {
+            text: "Comme les prisonniers de la caverne de Platon, le peuple de Paradis ne connaît que les ombres projetées sur les murs. Les trois enceintes ne sont pas seulement des remparts contre les Titans, mais les parois d'une prison mentale."
+          }
+        },
+        {
+          type: 'bullets',
+          data: {
+            items: [
+              "L'ignorance comme protection : Karl Fritz a effacé les mémoires pour créer un paradis artificiel",
+              "La vérité douloureuse : Sortir de la caverne signifie découvrir une réalité insupportable",
+              "Le refus de savoir : La majorité préfère le confort de l'illusion à la liberté de la connaissance"
+            ]
+          }
+        },
+        { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/caverne_verite.mp4', title: 'S3E20 (Ep57) — Révélation du sous-sol' }] } },
+        {
+          type: 'image',
+          column: 'right',
+          data: {
+            src: '/aot/wall3.jpg',
+            alt: 'Les murs de Paradis',
+            caption: '"Que préférez-vous : vivre dans une cage dorée ou mourir libre ?"'
+          }
+        }
+      ]
     },
 
-    // Slide 8: Section - Partie II
+    // Slide 7: Section - Partie II
     {
       id: 'partie-2',
       type: 'section',
@@ -195,100 +202,87 @@ export const attackOnTitanPresentation: Presentation = {
       backgroundImage: '/aot/expo.jpg'
     },
 
-    // Slide 9: Le Bataillon d'Exploration (vidéos intégrées)
+    // Slide 8: Le Bataillon d'Exploration (was two-column)
     {
       id: 'bataillon',
-      type: 'two-column',
+      type: 'content',
       theme: 'green',
-      category: 'LES AILES DE LA LIBERTÉ',
-      title: "Le Bataillon d'Exploration",
-      subtitle: "Confort ou Liberté — qu'est-ce qui compte vraiment ?",
-      videos: [
-        { url: '/aot/video/s1e16_integration_bataillon.mp4', title: 'S1E16 — Intégration du bataillon' },
-      ],
-      leftColumn: {
-        title: 'La Quête Philosophique',     
-        content: '',    
-        bulletPoints: [
-          {
-            icon: 'compass',
-            title: 'Quête de Vérité',
-            content: 'Sortir des murs, c\'est choisir la connaissance sur l\'ignorance confortable.'
-          },
-          {
-            icon: 'heart',
-            title: 'Le Prix de la Liberté',
-            content: 'Les épreuves et le confort sont le prix de la liberté.'
-          },
-          {
-            icon: 'flame',
-            title: "l'éveil de la conscience",
-            content: "Jean, Connie et Sasha se révèlent en choisissant une cause supérieur à leur égo."
-          }
-        ],
-      },
-      rightColumn: {
-        cards: [
-          {
-            title: 'Le Miroir de Notre Société',
-            highlightedText: 'Préférons-nous',
-            content: [
-              "la sécurité de nos murs modernes — écrans, confort, consommation — à l'incertitude de la quête de sens ?",
-              "Le Bataillon refuse la normalisation de l'oppression. Chaque expédition est un acte philosophique : choisir la liberté sur le confort."
+      blocks: [
+        { type: 'heading', data: { category: 'LES AILES DE LA LIBERTÉ', title: "Le Bataillon d'Exploration", subtitle: "Confort ou Liberté — qu'est-ce qui compte vraiment ?" } },
+        {
+          type: 'icon-bullets',
+          data: {
+            items: [
+              { icon: 'compass', title: 'Quête de Vérité', content: 'Sortir des murs, c\'est choisir la connaissance sur l\'ignorance confortable.' },
+              { icon: 'heart', title: 'Le Prix de la Liberté', content: 'Les épreuves et le confort sont le prix de la liberté.' },
+              { icon: 'flame', title: "l'éveil de la conscience", content: "Jean, Connie et Sasha se révèlent en choisissant une cause supérieur à leur égo." }
             ]
-          },
-          {
-            title: "Le choix de la Philosophie",
-            highlightedText: '',
-            content: [
-              "La philosophie, comme le Bataillon, nous demande de sortir de notre zone de confort pour affronter la vérité — même quand elle dérange."
-            ],
-            footer: {
-              title: '"Celui qui travaille pour sa seule vie ne construit rien. Mais celui qui travaille pour l\'éternité, celui-là bâtit un empire [...]."',
-              text: "Saint-Exupéry, Citadelle"
-            }
           }
-        ]
-      }
+        },
+        { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/s1e16_integration_bataillon.mp4', title: 'S1E16 — Intégration du bataillon' }] } },
+        {
+          type: 'cards',
+          column: 'right',
+          data: {
+            items: [
+              {
+                title: 'Le Miroir de Notre Société',
+                content: "Préférons-nous la sécurité de nos murs modernes — écrans, confort, consommation — à l'incertitude de la quête de sens ? Le Bataillon refuse la normalisation de l'oppression. Chaque expédition est un acte philosophique : choisir la liberté sur le confort.",
+                highlight: 'Préférons-nous'
+              },
+              {
+                title: 'Le choix de la Philosophie',
+                content: "La philosophie, comme le Bataillon, nous demande de sortir de notre zone de confort pour affronter la vérité — même quand elle dérange.",
+                subtext: "\"Celui qui travaille pour sa seule vie ne construit rien. Mais celui qui travaille pour l'éternité, celui-là bâtit un empire [...].\" — Saint-Exupéry, Citadelle"
+              }
+            ]
+          }
+        }
+      ]
     },
 
-    // Slide 10: Erwin Smith (vidéo intégrée)
+    // Slide 9: Erwin Smith
     {
       id: 'erwin-philosophie',
       type: 'content',
       theme: 'green',
-      category: 'STOÏCISME ET TRANSCENDANCE',
-      title: 'Erwin Smith',
-      subtitle: 'Le Stoïcien • Le Chef qui transcende la mort',
-      videos: [
-        { url: '/aot/video/erwin_speech.mp4', title: 'S3E16 (Ep53) — La charge d\'Erwin' }
-      ],
-      sections: [
+      blocks: [
+        { type: 'heading', data: { category: 'STOÏCISME ET TRANSCENDANCE', title: 'Erwin Smith', subtitle: 'Le Stoïcien • Le Chef qui transcende la mort' } },
+        { type: 'section', data: { title: 'Le Stoïcisme Incarné', content: "Erwin accepte ce qui ne dépend pas de lui (la mort) et agit avec excellence sur ce qui en dépend (ses choix). Il ne philosophe pas sur ce que doit être un homme de bien — il l'est." } },
         {
-          title: 'Le Stoïcisme Incarné',
-          content: "Erwin accepte ce qui ne dépend pas de lui (la mort) et agit avec excellence sur ce qui en dépend (ses choix). Il ne philosophe pas sur ce que doit être un homme de bien — il l'est."
-        }
-      ],
-      cards: [
+          type: 'quote',
+          step: 1,
+          data: {
+            text: '"Quels que soient vos rêves ou vos espoirs [...] , l\'homme ne peut échapper à la mort."',
+            author: 'Erwin Smith — La charge vers le Titan Bestial (S3 E16, Ep53)'
+          }
+        },
         {
-          title: 'Marc Aurèle',
-          content: '"Songe que tu pourrais à l\'instant quitter la vie. Agis, parle, pense en conséquence."',
-          highlight: 'Agir en conséquence',
-          subtext: 'Pensées pour moi-même, Livre II, §11'
+          type: 'bullets',
+          step: 1,
+          data: {
+            items: [
+              'Métitation stoïcienne sur la mort,',
+              "L'idéal au dessus de sa propre vie"
+            ]
+          }
+        },
+        { type: 'videos', step: 2, column: 'right', data: { items: [{ url: '/aot/video/erwin_speech.mp4', title: 'S3E16 (Ep53) — La charge d\'Erwin' }] } },
+        {
+          type: 'card',
+          step: 2,
+          column: 'right',
+          data: {
+            title: 'Marc Aurèle',
+            content: '"Songe que tu pourrais à l\'instant quitter la vie. Agis, parle, pense en conséquence."',
+            highlight: 'Agir en conséquence',
+            subtext: 'Pensées pour moi-même, Livre II, §11'
+          }
         }
-      ],
-      quote: {
-        text: '"Quels que soient vos rêves ou vos espoirs [...] , l\'homme ne peut échapper à la mort."',
-        author: 'Erwin Smith — La charge vers le Titan Bestial (S3 E16, Ep53)'
-      },
-      bulletPointsTitle: '',
-      bulletPoints: [
-        'Métitation stoïcienne sur la mort,',
-        "L'idéal au dessus de sa propre vie",
       ]
     },
 
-    // Slide 11: Section - Partie III
+    // Slide 10: Section - Partie III
     {
       id: 'partie-3',
       type: 'section',
@@ -299,73 +293,88 @@ export const attackOnTitanPresentation: Presentation = {
       backgroundImage: '/aot/jean.jpg'
     },
 
-    // Slide 12: Introduction Bhagavad Gîta (vidéo intégrée)
+    // Slide 11: Bhagavad Gîta — Eren
     {
       id: 'bhagavad-gita-intro',
       type: 'content',
       theme: 'blue',
-      category: 'PORTRAIT • LA BHAGAVAD GÎTA',
-      title: 'Eren : Combat Intérieur',
-      subtitle: 'Quand l\'homme tombe à genoux',
-      videos: [
-        { url: '/aot/video/s2e12_eren_combat_interieur.mp4', title: 'S2E12 (Ep37) — Eren à genoux, impuissant' }
-      ],
-      content: {
-        highlightedText: 'Dans la Bhagavad Gîta, Arjuna doit lancer le combat.',
-        text: " En voyant dans le camp ennemi ses amis et sa famille, il refuse de combattre et s'effondre.",
-        quote: {
-          text: '"Mon arc glisse de mes mains, ma peau brûle, je ne peux plus tenir debout, mon esprit vacille..."',
-          author: 'Arjuna — Bhagavad Gîta, Chant I'
-        },
-      },
-      cards: [
+      blocks: [
+        { type: 'heading', data: { category: 'PORTRAIT • LA BHAGAVAD GÎTA', title: 'Eren : Combat Intérieur', subtitle: 'Quand l\'homme tombe à genoux' } },
         {
-          title: 'Krishna à Arjuna',
-          content: '"Tu t\'apitoies là où il ne faut pas. Les sages ne pleurent ni les vivants ni les morts. Lève-toi, fils de Kuntî, et combats."',
-          highlight: 'Lève-toi et combats',
-          subtext: 'Bhagavad Gîta, Chant II, v.11 & v.37'
+          type: 'text',
+          data: {
+            highlightedText: 'Dans la Bhagavad Gîta, Arjuna doit lancer le combat.',
+            content: " En voyant dans le camp ennemi ses amis et sa famille, il refuse de combattre et s'effondre."
+          }
         },
-         {
-          title: 'Un combat à l\'intérieur en nous',
-          content: 'Nos défauts, nos défaites, nos mauvais désirs nous hantent. Ils nous attaquent pour nous empêcher de faire notre devoir.',
-          highlight: 'Conscience vs  Personnalité',
+        {
+          type: 'quote',
+          data: {
+            text: '"Mon arc glisse de mes mains, ma peau brûle, je ne peux plus tenir debout, mon esprit vacille..."',
+            author: 'Arjuna — Bhagavad Gîta, Chant I'
+          }
+        },
+        { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/s2e12_eren_combat_interieur.mp4', title: 'S2E12 (Ep37) — Eren à genoux, impuissant' }] } },
+        {
+          type: 'cards',
+          column: 'right',
+          data: {
+            items: [
+              {
+                title: 'Krishna à Arjuna',
+                content: '"Tu t\'apitoies là où il ne faut pas. Les sages ne pleurent ni les vivants ni les morts. Lève-toi, fils de Kuntî, et combats."',
+                highlight: 'Lève-toi et combats',
+                subtext: 'Bhagavad Gîta, Chant II, v.11 & v.37'
+              },
+              {
+                title: 'Un combat à l\'intérieur en nous',
+                content: 'Nos défauts, nos défaites, nos mauvais désirs nous hantent. Ils nous attaquent pour nous empêcher de faire notre devoir.',
+                highlight: 'Conscience vs  Personnalité'
+              }
+            ]
+          }
         }
       ]
     },
 
-    // Slide 15: Jean Kirschtein — Portrait
+    // Slide 12: Jean Kirschtein
     {
       id: 'jean',
       type: 'content',
       theme: 'blue',
-      category: 'PORTRAIT • L\'HUMANITÉ',
-      title: 'Jean Kirschtein',
-      subtitle: 'L\'Homme Ordinaire qui agit extraordinairement',
-      videos: [
-        { url: '/aot/video/s4e8_jean_sasha.mp4', title: 'S4E8 — Mort de Sasha' }
-      ],
-      sections: [
+      blocks: [
+        { type: 'heading', data: { category: 'PORTRAIT • L\'HUMANITÉ', title: 'Jean Kirschtein', subtitle: 'L\'Homme Ordinaire qui agit extraordinairement' } },
         {
-          title: 'L\'éveil de la conscience',
-          content: "Jean rêvait des Brigades Spéciales : une vie tranquille à l'intérieur des murs. Il n'a aucun idéal, aucune rage, aucun pouvoir spécial. Quand Marco meurt, il ne se transforme pas en héros — il se retrouve simplement seul avec sa conscience. Et il choisit de ne pas fuir."
+          type: 'section',
+          data: {
+            title: 'L\'éveil de la conscience',
+            content: "Jean rêvait des Brigades Spéciales : une vie tranquille à l'intérieur des murs. Il n'a aucun idéal, aucune rage, aucun pouvoir spécial. Quand Marco meurt, il ne se transforme pas en héros — il se retrouve simplement seul avec sa conscience. Et il choisit de ne pas fuir."
+          }
         },
         {
-          title: 'Le meilleur de l\'humanité',
-          content: "Jean est tiraillé en permanence. Il a peur, il doute, il voudrait fuir. Mais à chaque croisement, il choisit d'écouter sa conscience plutôt que sa peur. Il ne tue pas Gaby — celle qui a tué Sasha — parce que ce ne serait pas juste. Jean représente ce que l'on peut faire de mieux en tant qu'humain : agir bien, avec nos doutes et nos faiblesses."
-        }
-      ],
-      cards: [
+          type: 'section',
+          step: 1,
+          data: {
+            title: 'Le meilleur de l\'humanité',
+            content: "Jean est tiraillé en permanence. Il a peur, il doute, il voudrait fuir. Mais à chaque croisement, il choisit d'écouter sa conscience plutôt que sa peur. Il ne tue pas Gaby — celle qui a tué Sasha — parce que ce ne serait pas juste. Jean représente ce que l'on peut faire de mieux en tant qu'humain : agir bien, avec nos doutes et nos faiblesses."
+          }
+        },
+        { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/s4e8_jean_sasha.mp4', title: 'S4E8 — Mort de Sasha' }] } },
         {
-          title: 'Aristote — Éthique à Nicomaque',
-          content: '"C\'est en pratiquant les actions justes que nous devenons justes, les actions tempérantes que nous devenons tempérants, les actions courageuses que nous devenons courageux."',
-          highlight: 'Devenir juste en agissant justement',
-          subtext: 'Livre II, chap. 1 — On ne naît pas bon. On le devient par ses actes.'
+          type: 'card',
+          step: 1,
+          column: 'right',
+          data: {
+            title: 'Aristote — Éthique à Nicomaque',
+            content: '"C\'est en pratiquant les actions justes que nous devenons justes, les actions tempérantes que nous devenons tempérants, les actions courageuses que nous devenons courageux."',
+            highlight: 'Devenir juste en agissant justement',
+            subtext: 'Livre II, chap. 1 — On ne naît pas bon. On le devient par ses actes.'
+          }
         }
-      ],
-      
+      ]
     },
 
-    // Slide 16: Section - Partie IV
+    // Slide 13: Section - Partie IV
     {
       id: 'partie-4',
       type: 'section',
@@ -376,78 +385,100 @@ export const attackOnTitanPresentation: Presentation = {
       backgroundImage: '/aot/gaby.jpg'
     },
 
-    // Slide 17: Gaby — Produit de la Propagande (vidéo intégrée)
+    // Slide 14: Gaby — Produit de la Propagande
     {
       id: 'gaby-propagande',
       type: 'content',
       theme: 'red',
-      category: 'LE CYCLE DE LA HAINE',
-      title: 'Gaby Braun',
-      subtitle: 'Produit de la Propagande • Vision Binaire',
-      videos: [
-        { url: '/aot/video/s4e2_gaby_tranchee.mp4', title: 'S4E1 (Ep60) — Fort Slava' },
-        { url: '/aot/video/s4e11_gaby_dogme.mp4', title: 'S4E10 (Ep70) — Gaby Dogme' }
-      ],
-      sections: [
+      blocks: [
+        { type: 'heading', data: { category: 'LE CYCLE DE LA HAINE', title: 'Gaby Braun', subtitle: 'Produit de la Propagande • Vision Binaire' } },
+        { type: 'section', data: { title: 'Produit de la Propagande', content: "Gaby est ce que la propagande peut créer : une enfant-soldat convaincue d'être un \"bon Eldien\", prête à tout pour prouver sa valeur à ses oppresseurs. Elle a intériorisé la haine de son propre peuple." } },
         {
-          title: 'Produit de la Propagande',
-          content: "Gaby est ce que la propagande peut créer : une enfant-soldat convaincue d'être un \"bon Eldien\", prête à tout pour prouver sa valeur à ses oppresseurs. Elle a intériorisé la haine de son propre peuple."
-        }
-      ],
-      cards: [
+          type: 'quote',
+          step: 1,
+          data: {
+            text: '"Je vais tous les tuer ! Ces démons de Paradis !"',
+            author: 'Gaby Braun — Avant sa déconstruction'
+          }
+        },
         {
-          title: 'Le Miroir d\'Eren',
-          content: 'Gaby est Eren de l\'autre côté de la mer. Même rage, même certitude d\'être du côté du bien. La haine se reproduit identiquement des deux côtés.',
-          highlight: 'Le miroir d\'Eren',
-          subtext: 'Début du voyage initiatique : la confrontation avec l\'Autre va briser ses certitudes.'
+          type: 'bullets',
+          step: 1,
+          data: {
+            items: [
+              'Vision binaire du monde héritée de la propagande',
+              'Début du voyage initiatique de la conscience'
+            ]
+          }
+        },
+        {
+          type: 'videos',
+          column: 'right',
+          data: {
+            items: [
+              { url: '/aot/video/s4e2_gaby_tranchee.mp4', title: 'S4E1 (Ep60) — Fort Slava' },
+              { url: '/aot/video/s4e11_gaby_dogme.mp4', title: 'S4E10 (Ep70) — Gaby Dogme' }
+            ]
+          }
+        },
+        {
+          type: 'card',
+          step: 1,
+          column: 'right',
+          data: {
+            title: 'Le Miroir d\'Eren',
+            content: 'Gaby est Eren de l\'autre côté de la mer. Même rage, même certitude d\'être du côté du bien. La haine se reproduit identiquement des deux côtés.',
+            highlight: 'Le miroir d\'Eren',
+            subtext: 'Début du voyage initiatique : la confrontation avec l\'Autre va briser ses certitudes.'
+          }
         }
-      ],
-      quote: {
-        text: '"Je vais tous les tuer ! Ces démons de Paradis !"',
-        author: 'Gaby Braun — Avant sa déconstruction'
-      },
-      bulletPointsTitle: '',
-      bulletPoints: [
-        'Vision binaire du monde héritée de la propagande',
-        'Début du voyage initiatique de la conscience'
       ]
     },
 
-    // Slide 18: Gaby — Déconstruite (vidéo intégrée)
+    // Slide 15: Gaby — Déconstruite
     {
       id: 'gaby-deconstruite',
       type: 'content',
       theme: 'red',
-      category: 'LA MAÏEUTIQUE',
-      title: 'Gaby Braun',
-      subtitle: 'La Déconstruction • La Maïeutique de Kaya',
-      videos: [
-        { url: '/aot/video/s4e11_gaby_kaya_socrate.mp4', title: 'S4E11 (Ep70) — Kaya confronte Gaby' },
-        { url: '/aot/video/s4e12_peresasha.mp4', title: 'S4E12 (Ep71) — Le père de Sasha brise le cercle' },
-        { url: '/aot/video/e77_gaby_sagesse.mp4', title: 'S4E18 (Ep77) — Gaby prise de conscience' }
-      ],
-      sections: [
+      blocks: [
+        { type: 'heading', data: { category: 'LA MAÏEUTIQUE', title: 'Gaby Braun', subtitle: 'La Déconstruction • La Maïeutique de Kaya' } },
+        { type: 'section', data: { title: 'La Maïeutique de Kaya', content: "\"Qu'est-ce que ma mère avait fait de mal ?\" — Cette question simple fait s'effondrer tout l'édifice. Socrate utilisait la maïeutique pour \"accoucher\" les esprits de la vérité. Kaya, sans le savoir, devient la sage-femme de la conscience de Gaby." } },
         {
-          title: 'La Maïeutique de Kaya',
-          content: "\"Qu'est-ce que ma mère avait fait de mal ?\" — Cette question simple fait s'effondrer tout l'édifice. Socrate utilisait la maïeutique pour \"accoucher\" les esprits de la vérité. Kaya, sans le savoir, devient la sage-femme de la conscience de Gaby."
-        }
-      ],
-      cards: [
-        {
-          title: 'La Prise de Conscience',
-          content: 'Les "démons" de Paradis vivent, aiment, souffrent comme elle. La réalité est plus complexe que la propagande.',
-          highlight: 'Ces gens... ne sont pas des démons',
-          subtext: 'La déconstruction de Gaby est un chemin philosophique : du dogme à la pensée libre.'
+          type: 'bullets',
+          step: 1,
+          data: {
+            items: [
+              'De la certitude au doute : le premier pas vers la sagesse',
+              'Sortir de la caverne est difficile et long...'
+            ]
+          }
         },
-      ],
-      bulletPointsTitle: '',
-      bulletPoints: [
-        'De la certitude au doute : le premier pas vers la sagesse',
-        'Sortir de la caverne est difficile et long...',
+        {
+          type: 'videos',
+          column: 'right',
+          data: {
+            items: [
+              { url: '/aot/video/s4e11_gaby_kaya_socrate.mp4', title: 'S4E11 (Ep70) — Kaya confronte Gaby' },
+              { url: '/aot/video/s4e12_peresasha.mp4', title: 'S4E12 (Ep71) — Le père de Sasha brise le cercle' },
+              { url: '/aot/video/e77_gaby_sagesse.mp4', title: 'S4E18 (Ep77) — Gaby prise de conscience' }
+            ]
+          }
+        },
+        {
+          type: 'card',
+          step: 1,
+          column: 'right',
+          data: {
+            title: 'La Prise de Conscience',
+            content: 'Les "démons" de Paradis vivent, aiment, souffrent comme elle. La réalité est plus complexe que la propagande.',
+            highlight: 'Ces gens... ne sont pas des démons',
+            subtext: 'La déconstruction de Gaby est un chemin philosophique : du dogme à la pensée libre.'
+          }
+        }
       ]
     },
 
-    // Slide 19: Section - Partie V
+    // Slide 16: Section - Partie V
     {
       id: 'partie-5',
       type: 'section',
@@ -458,82 +489,94 @@ export const attackOnTitanPresentation: Presentation = {
       backgroundImage: '/aot/putin.jpg'
     },
 
-    // Slide 20: Les Leçons d'Isayama (vidéos intégrées)
+    // Slide 17: Les Leçons d'Isayama (was parallels)
     {
       id: 'lecons-isayama',
-      type: 'parallels',
+      type: 'content',
       theme: 'red',
-      title: "Les Leçons d'Isayama",
-      subtitle: "Ce que l'Attaque des Titans nous enseigne",
-      videos: [
-        { url: '/aot/video/mywar.mp4', title: 'Générique saison finale — My War' },
-        { url: '/aot/video/e87_eren_grand_terassement.mp4', title: 'S4E28 (Ep87) - Grand Terassement' }
-      ],
-      parallels: [
+      blocks: [
+        { type: 'heading', data: { title: "Les Leçons d'Isayama", subtitle: "Ce que l'Attaque des Titans nous enseigne" } },
         {
-          icon: 'alert',
-          title: "L'Absurdité de la Guerre",
-          anime: "L'ennemi n'est plus le Titan, mais l'homme de l'autre côté de la mer — puis son propre voisin. La déshumanisation engendre l'escalade.",
-          realWorld: "\"On se battait contre des gens comme nous.\" La guerre crée des monstres des deux côtés — Gaby et Eren sont le miroir l'un de l'autre."
+          type: 'videos',
+          data: {
+            items: [
+              { url: '/aot/video/mywar.mp4', title: 'Générique saison finale — My War' },
+              { url: '/aot/video/e87_eren_grand_terassement.mp4', title: 'S4E28 (Ep87) - Grand Terassement' }
+            ]
+          }
         },
         {
-          icon: 'flame',
-          title: "La Liberté Absolue Détruit",
-          anime: "Eren, Surhomme nietzschéen, brise toutes les chaînes — mais sa liberté absolue mène au Grand Terrassement, la destruction totale.",
-          realWorld: "Une liberté sans conscience ni limites morales devient la pire des tyrannies. La volonté de puissance sans sagesse est auto-destructrice."
-        },
-        {
-          icon: 'heart',
-          title: 'Le Combat Intérieur et la Conscience',
-          anime: "Jean choisit d'écouter sa conscience plutôt que sa peur. Il ne tue pas Gaby. Il combat ses propres démons avant de combattre l'ennemi.",
-          realWorld: "Comme Arjuna dans la Bhagavad Gîta, le vrai combat est intérieur. Suivre sa conscience — même quand le monde entier dit le contraire — c'est le premier acte de liberté."
-        },
-        {
-          icon: 'users',
-          title: 'Briser le Cercle, Créer un Cercle Vertueux',
-          anime: "Le père de Sasha refuse de tuer Gaby — il brise le cycle de la vengeance. L'humanisme n'est pas une faiblesse, c'est un choix courageux.",
-          realWorld: "On ne naît pas bon, on le devient par ses actes (Aristote). Chaque acte de conscience crée un cercle vertueux — chaque acte de haine relance le cercle vicieux."
+          type: 'parallels',
+          data: {
+            items: [
+              {
+                icon: 'alert',
+                title: "L'Absurdité de la Guerre",
+                anime: "L'ennemi n'est plus le Titan, mais l'homme de l'autre côté de la mer — puis son propre voisin. La déshumanisation engendre l'escalade.",
+                realWorld: "\"On se battait contre des gens comme nous.\" La guerre crée des monstres des deux côtés — Gaby et Eren sont le miroir l'un de l'autre."
+              },
+              {
+                icon: 'flame',
+                title: "La Liberté Absolue Détruit",
+                anime: "Eren, Surhomme nietzschéen, brise toutes les chaînes — mais sa liberté absolue mène au Grand Terrassement, la destruction totale.",
+                realWorld: "Une liberté sans conscience ni limites morales devient la pire des tyrannies. La volonté de puissance sans sagesse est auto-destructrice."
+              },
+              {
+                icon: 'heart',
+                title: 'Le Combat Intérieur et la Conscience',
+                anime: "Jean choisit d'écouter sa conscience plutôt que sa peur. Il ne tue pas Gaby. Il combat ses propres démons avant de combattre l'ennemi.",
+                realWorld: "Comme Arjuna dans la Bhagavad Gîta, le vrai combat est intérieur. Suivre sa conscience — même quand le monde entier dit le contraire — c'est le premier acte de liberté."
+              },
+              {
+                icon: 'users',
+                title: 'Briser le Cercle, Créer un Cercle Vertueux',
+                anime: "Le père de Sasha refuse de tuer Gaby — il brise le cycle de la vengeance. L'humanisme n'est pas une faiblesse, c'est un choix courageux.",
+                realWorld: "On ne naît pas bon, on le devient par ses actes (Aristote). Chaque acte de conscience crée un cercle vertueux — chaque acte de haine relance le cercle vicieux."
+              }
+            ],
+            bottomQuote: "\"Cette guerre, on ne savait pas pourquoi on la faisait. On se battait contre des gens comme nous.\" — Lazare Ponticelli, dernier poilu français"
+          }
         }
-      ],
-      bottomQuote: "\"Cette guerre, on ne savait pas pourquoi on la faisait. On se battait contre des gens comme nous.\" — Lazare Ponticelli, dernier poilu français"
+      ]
     },
 
-    // Slide 21: Conclusion - La Liberté (vidéos intégrées)
+    // Slide 18: Conclusion
     {
       id: 'conclusion',
       type: 'content',
       theme: 'blue',
-      category: 'CONCLUSION',
-      title: 'Qu\'est-ce que la Liberté ?',
-      subtitle: 'Trois visions, trois chemins',
-      sections: [
+      blocks: [
+        { type: 'heading', data: { category: 'CONCLUSION', title: 'Qu\'est-ce que la Liberté ?', subtitle: 'Trois visions, trois chemins' } },
+        { type: 'section', data: { title: 'La Liberté selon Spinoza', content: "\"L'homme qui s'adonne à ses plaisirs devient moins libre que celui qui s'en restreint.\" La vraie liberté n'est pas l'absence de contraintes, mais la maîtrise de soi. Hannes, Eren et le Bataillon incarnent trois rapports différents à cette liberté." } },
         {
-          title: 'La Liberté selon Spinoza',
-          content: "\"L'homme qui s'adonne à ses plaisirs devient moins libre que celui qui s'en restreint.\" La vraie liberté n'est pas l'absence de contraintes, mais la maîtrise de soi. Hannes, Eren et le Bataillon incarnent trois rapports différents à cette liberté."
+          type: 'section',
+          step: 1,
+          data: {
+            title: 'Ce que nous enseigne AoT',
+            content: "Ce que peut faire de mieux un arbre, c'est grandir et se développer. Ce que peut faire de mieux un homme, c'est suivre sa conscience — même quand le monde entier lui dit qu'il a tort."
+          }
         },
         {
-          title: 'Ce que nous enseigne AoT',
-          content: "Ce que peut faire de mieux un arbre, c'est grandir et se développer. Ce que peut faire de mieux un homme, c'est suivre sa conscience — même quand le monde entier lui dit qu'il a tort."
+          type: 'cards',
+          step: 1,
+          column: 'right',
+          data: {
+            items: [
+              { title: 'Hannes — La Non-Action', content: 'On est libre de ne pas agir, de choisir le confort de l\'ignorance. Mais cette liberté-là est une prison dorée.' },
+              { title: 'Se Responsabiliser — Grandir et Agir', content: 'On est libre de se transformer intérieurement et d\'agir pour le monde extérieur — en même temps. Le développement personnel sans action est stérile. L\'action sans travail intérieur reproduit les mêmes erreurs.' },
+              { title: 'Le Bataillon — L\'Idéal', content: 'On est libre de choisir un idéal plus grand que soi et de se battre pour lui. C\'est le bataillon d\'exploration; C\'est le père de Sasha; C\'est L\'humanité de Jean.' }
+            ]
+          }
+        },
+        {
+          type: 'quote',
+          step: 2,
+          data: {
+            text: '"Une excellente manière de te défendre d\'eux, c\'est d\'éviter de leur ressembler."',
+            author: 'Marc Aurèle, Pensées pour moi-même'
+          }
         }
-      ],
-      cards: [
-        {
-          title: 'Hannes — La Non-Action',
-          content: 'On est libre de ne pas agir, de choisir le confort de l\'ignorance. Mais cette liberté-là est une prison dorée.',
-        },
-        {
-          title: 'Se Responsabiliser — Grandir et Agir',
-          content: 'On est libre de se transformer intérieurement et d\'agir pour le monde extérieur — en même temps. Le développement personnel sans action est stérile. L\'action sans travail intérieur reproduit les mêmes erreurs.',
-        },
-        {
-          title: 'Le Bataillon — L\'Idéal',
-          content: 'On est libre de choisir un idéal plus grand que soi et de se battre pour lui. C\'est le bataillon d\'exploration; C\'est le père de Sasha; C\'est L\'humanité de Jean.',
-        }
-      ],
-      quote: {
-        text: '"Une excellente manière de te défendre d\'eux, c\'est d\'éviter de leur ressembler."',
-        author: 'Marc Aurèle, Pensées pour moi-même'
-      },
+      ]
     }
   ]
 }

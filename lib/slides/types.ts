@@ -1,5 +1,4 @@
 // Slide Types for the Presentation System
-// Easy to extend with new slide types
 
 export type SlideTheme = 'red' | 'blue' | 'green' | 'orange' | 'purple' | 'cyan'
 
@@ -12,8 +11,93 @@ export interface BaseSlide {
   id: string
   type: string
   theme?: SlideTheme
-  videos?: SlideVideo[]
 }
+
+// ========== Block data types ==========
+
+interface HeadingBlockData {
+  category?: string
+  title: string
+  subtitle?: string
+  image?: string
+}
+
+interface TextBlockData {
+  content: string
+  highlightedText?: string
+}
+
+interface QuoteBlockData {
+  text: string
+  author?: string
+}
+
+interface BulletsBlockData {
+  title?: string
+  items: string[]
+}
+
+interface CardBlockData {
+  title: string
+  content: string
+  highlight?: string
+  subtext?: string
+}
+
+interface CardsBlockData {
+  items: CardBlockData[]
+}
+
+interface VideosBlockData {
+  items: SlideVideo[]
+}
+
+interface ImageBlockData {
+  src: string
+  alt: string
+  caption?: string
+}
+
+interface SectionBlockData {
+  title: string
+  content: string
+}
+
+interface TimelineBlockData {
+  events: { date: string; title: string; description: string }[]
+}
+
+interface ParallelsBlockData {
+  items: { icon: string; title: string; anime: string; realWorld: string }[]
+  bottomQuote?: string
+}
+
+interface PlanGridBlockData {
+  items: { partNumber: string; title: string; image: string }[]
+}
+
+interface IconBulletsBlockData {
+  items: { icon: string; title: string; content: string }[]
+}
+
+// ========== Content block union ==========
+
+export type ContentBlock =
+  | { type: 'heading'; column?: 'left' | 'right'; step?: number; data: HeadingBlockData }
+  | { type: 'text'; column?: 'left' | 'right'; step?: number; data: TextBlockData }
+  | { type: 'quote'; column?: 'left' | 'right'; step?: number; data: QuoteBlockData }
+  | { type: 'bullets'; column?: 'left' | 'right'; step?: number; data: BulletsBlockData }
+  | { type: 'card'; column?: 'left' | 'right'; step?: number; data: CardBlockData }
+  | { type: 'cards'; column?: 'left' | 'right'; step?: number; data: CardsBlockData }
+  | { type: 'videos'; column?: 'left' | 'right'; step?: number; data: VideosBlockData }
+  | { type: 'image'; column?: 'left' | 'right'; step?: number; data: ImageBlockData }
+  | { type: 'section'; column?: 'left' | 'right'; step?: number; data: SectionBlockData }
+  | { type: 'timeline'; column?: 'left' | 'right'; step?: number; data: TimelineBlockData }
+  | { type: 'parallels'; column?: 'left' | 'right'; step?: number; data: ParallelsBlockData }
+  | { type: 'plan-grid'; column?: 'left' | 'right'; step?: number; data: PlanGridBlockData }
+  | { type: 'icon-bullets'; column?: 'left' | 'right'; step?: number; data: IconBulletsBlockData }
+
+// ========== Slide types ==========
 
 export interface TitleSlide extends BaseSlide {
   type: 'title'
@@ -34,126 +118,7 @@ export interface SectionSlide extends BaseSlide {
 
 export interface ContentSlide extends BaseSlide {
   type: 'content'
-  category: string
-  title: string
-  subtitle?: string
-  content?: {
-    text?: string
-    highlightedText?: string
-    bulletPoints?: string[]
-    quote?: {
-      text: string
-      author: string
-    }
-  }
-  sections?: {
-    title: string
-    content: string
-  }[]
-  image?: {
-    src: string
-    alt: string
-    caption?: string
-  }
-  cards?: {
-    title: string
-    content: string
-    highlight?: string
-    subtext?: string
-  }[]
-  quote?: {
-    text: string
-    author: string
-  }
-  bulletPoints?: string[]
-  bulletPointsTitle?: string
-}
-
-export interface TimelineSlide extends BaseSlide {
-  type: 'timeline'
-  title: string
-  events: {
-    date: string
-    title: string
-    description: string
-  }[]
-  image?: {
-    src: string
-    alt: string
-  }
-  cards?: {
-    title: string
-    content: string
-    highlight?: string
-    subtext?: string
-  }[]
-}
-
-export interface VideoSlide extends BaseSlide {
-  type: 'video'
-  title: string
-  videoUrl?: string
-  links?: { title: string; url: string }[]
-  placeholder: string
-  description: string
-  quote?: {
-    text: string
-    author: string
-  }
-}
-
-export interface TwoColumnSlide extends BaseSlide {
-  type: 'two-column'
-  category: string
-  title: string
-  subtitle?: string
-  leftColumn: {
-    title?: string
-    content: string
-    bulletPoints?: {
-      icon?: string
-      title: string
-      content: string
-    }[]
-    quote?: {
-      text: string
-      author: string
-    }
-  }
-  rightColumn: {
-    cards?: {
-      title: string
-      highlightedText?: string
-      content: string[]
-      footer?: {
-        title: string
-        text: string
-      }
-    }[]
-  }
-}
-
-export interface QuotesGridSlide extends BaseSlide {
-  type: 'quotes-grid'
-  title: string
-  quotes: {
-    text: string
-    author: string
-    description: string
-  }[]
-}
-
-export interface ParallelsSlide extends BaseSlide {
-  type: 'parallels'
-  title: string
-  subtitle: string
-  parallels: {
-    icon: string
-    title: string
-    anime: string
-    realWorld: string
-  }[]
-  bottomQuote?: string
+  blocks: ContentBlock[]
 }
 
 export interface PlanSlide extends BaseSlide {
@@ -169,16 +134,7 @@ export interface PlanSlide extends BaseSlide {
   }[]
 }
 
-export type Slide =
-  | TitleSlide
-  | SectionSlide
-  | ContentSlide
-  | TimelineSlide
-  | VideoSlide
-  | TwoColumnSlide
-  | QuotesGridSlide
-  | ParallelsSlide
-  | PlanSlide
+export type Slide = TitleSlide | SectionSlide | ContentSlide | PlanSlide
 
 export interface Presentation {
   id: string
@@ -188,4 +144,10 @@ export interface Presentation {
   coverImage?: string
   createdAt?: string
   slides: Slide[]
+}
+
+/** Compute the max step number for a content slide's blocks */
+export function getMaxStep(slide: Slide): number {
+  if (slide.type !== 'content') return 0
+  return Math.max(0, ...slide.blocks.map(b => b.step ?? 0))
 }
