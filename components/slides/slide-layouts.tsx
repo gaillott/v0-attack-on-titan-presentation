@@ -42,12 +42,36 @@ export function EmbeddedVideos({ videos, theme }: { videos: SlideVideo[]; theme:
     videoEl.controls = true
     videoEl.autoplay = true
     videoEl.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;z-index:9999;background:black;object-fit:contain;'
-    videoEl.onclick = (e) => { if (e.target === videoEl) { videoEl.pause(); videoEl.remove() } }
-    videoEl.onended = () => videoEl.remove()
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { videoEl.pause(); videoEl.remove(); document.removeEventListener('keydown', handler) }
+
+    const cleanup = () => {
+      videoEl.pause()
+      videoEl.remove()
+      document.removeEventListener('keydown', keyHandler)
+      window.removeEventListener('popstate', popHandler)
     }
-    document.addEventListener('keydown', handler)
+
+    const closeViaBack = () => {
+      cleanup()
+    }
+
+    const closeViaUI = () => {
+      // Pop the history entry we pushed, without triggering navigation
+      window.removeEventListener('popstate', popHandler)
+      history.back()
+      cleanup()
+    }
+
+    videoEl.onclick = (e) => { if (e.target === videoEl) closeViaUI() }
+    videoEl.onended = () => closeViaUI()
+
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeViaUI()
+    }
+    const popHandler = () => closeViaBack()
+
+    history.pushState({ video: true }, '')
+    window.addEventListener('popstate', popHandler)
+    document.addEventListener('keydown', keyHandler)
     document.body.appendChild(videoEl)
   }
 

@@ -192,7 +192,21 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
   }, [])
 
   const onTouchEnd = useCallback(() => {
-    if (!touchStartRef.current || !touchEndRef.current) return
+    if (!touchStartRef.current) return
+
+    // Tap detection: no significant movement
+    if (!touchEndRef.current || (
+      Math.abs(touchStartRef.current.x - touchEndRef.current.x) < 10 &&
+      Math.abs(touchStartRef.current.y - touchEndRef.current.y) < 10
+    )) {
+      const tapX = touchStartRef.current.x
+      if (tapX > window.innerWidth / 2) nextAction()
+      else prevAction()
+      touchStartRef.current = null
+      touchEndRef.current = null
+      return
+    }
+
     const distanceX = touchStartRef.current.x - touchEndRef.current.x
     const distanceY = touchStartRef.current.y - touchEndRef.current.y
     // Only trigger horizontal swipe if it's clearly more horizontal than vertical
@@ -208,7 +222,7 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
 
   return (
     <div
-      className="relative h-[100dvh] w-screen bg-slate-900 overflow-hidden select-none"
+      className="relative flex flex-col h-[100dvh] w-screen bg-slate-900 overflow-hidden select-none"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -224,7 +238,7 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
       </div>
 
       {/* Progress bar */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] z-40 bg-white/[0.05]">
+      <div className="shrink-0 h-[2px] z-40 bg-white/[0.05]">
         <div
           className="h-full bg-white/30 transition-all duration-500 ease-out"
           style={{ width: `${progress}%` }}
@@ -234,7 +248,7 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
       {/* Main Slide Content */}
       <div
         key={currentSlide}
-        className="h-full w-full transition-all duration-300 ease-out"
+        className="flex-1 min-h-0 w-full transition-all duration-300 ease-out"
         style={{
           opacity: isTransitioning ? 0 : 1,
           transform: isTransitioning
@@ -265,7 +279,7 @@ export function PresentationViewer({ presentation }: PresentationViewerProps) {
       </button>
 
       {/* Bottom Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-12 sm:h-14 bg-slate-950/80 backdrop-blur-md flex items-center justify-between px-3 sm:px-6 overflow-hidden z-30">
+      <div className="shrink-0 h-12 sm:h-14 bg-slate-950/80 backdrop-blur-md flex items-center justify-between px-3 sm:px-6 overflow-hidden z-30">
         {/* Home button & Slide Counter */}
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <Link
