@@ -59,7 +59,7 @@ export function EmbeddedVideos({ videos, theme }: { videos: SlideVideo[]; theme:
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${theme.border} ${theme.bg} hover:brightness-125 transition-all cursor-pointer`}
         >
           <Play className={`w-3.5 h-3.5 ${theme.primary}`} fill="currentColor" />
-          <span className="text-xs text-slate-300 truncate max-w-[200px]">{video.title}</span>
+          <span className="text-xs text-slate-300 truncate max-w-[350px]">{video.title}</span>
         </button>
       ))}
     </div>

@@ -27,7 +27,8 @@ export const attackOnTitanPresentation: Presentation = {
       theme: 'red',
       blocks: [
         { type: 'heading', data: { category: 'SYNOPSIS', title: "L'Attaque des Titans" , subtitle : 'Une oeuvre profondément philosophique', image: '/aot/wall.jpg' } },
-        {
+        { type: 'videos',step:1, column: 'left', data: { items: [{ url: '/aot/video/s1e2_explication.mp4', title: 'S1E2 (Ep2) — Dogme de paradis' }] } },
+{
           type: 'text',
           step : 1,
           data: {
@@ -48,10 +49,10 @@ export const attackOnTitanPresentation: Presentation = {
             ]
           }
         },
-        { type: 'videos', step : 1, column: 'left', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S01E01 — A toi qui vis 2000 ans plus tard' }] } },
+        { type: 'videos', step : 2, column: 'right', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S1E1 (Ep1) — A toi qui vis 2000 ans plus tard' }] } },
         {
           type: 'card',
-          step: 2,
+          step: 3,
           column: 'right',
           data: {
             title: 'Eren, une aventure philosophique',
@@ -88,8 +89,7 @@ export const attackOnTitanPresentation: Presentation = {
       subtitle: 'Paradis : la Caverne de Platon',
       backgroundImage: '/aot/wall.webp'
     },
-
-    // Slide 5: Hannes
+ // Slide 6: Hannes
     {
       id: 'hannes',
       type: 'content',
@@ -129,14 +129,13 @@ export const attackOnTitanPresentation: Presentation = {
           column: 'right',
           data: {
             items: [
-              { url: '/aot/video/EP1_Hannes_Actes.mp4', title: 'S1E2 — Hannes paralysé devant le Titan Souriant' }
+              { url: '/aot/video/EP1_Hannes_Actes.mp4', title: 'S1E1 — Hannes paralysé devant le Titan' }
             ]
           }
         },
       ]
     },
-
-    // Slide 6: La Caverne de Platon
+   // Slide 5: La Caverne de Platon
     {
       id: 'caverne-platon',
       type: 'content',
@@ -145,51 +144,59 @@ export const attackOnTitanPresentation: Presentation = {
         { type: 'heading', data: { category: 'ALLÉGORIE PHILOSOPHIQUE', title: 'La Caverne de Platon', image: '/aot/wall3.jpg' } },
         {
           type: 'quote',
+          step :1,
           data: {
-            text: "Est-on vraiment libre, si on est enchaîné par des chaînes que l'on ne voit plus ?"
+            text: "« Imagine des hommes enchaînés dans une demeure souterraine, ne voyant que des ombres projetées sur le mur en face d'eux, et prenant ces ombres pour la réalité. » — Platon, La République, Livre VII"
           }
         },
-        {
-          type: 'text',
-          data: {
-            highlightedText: "Le peuple de Paradis ne connaît que les ombres projetées sur les murs.",
-            content: " Les trois enceintes ne sont pas seulement des remparts contre les Titans — ce sont les parois d'une prison mentale. Leur mémoire a été effacée. Ils ne savent même pas qu'ils sont prisonniers."
-          }
-        },
-        { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/caverne_verite.mp4', title: 'S3E20 (Ep57) — Révélation du sous-sol' }] } },
-        {
-          type: 'icon-bullets',
-          step: 1,
+        
+        { type: 'videos', step :1,column: 'left', data: { items: [
+          { url: '/aot/video/S1E1_Retour_du_bataillon.mp4', title: 'S1E1 (Ep1) - Eren au retour du bataillon d\'exploration' }
+        ] } },
+         {
+          type: 'videos',
+          step: 2,
           column: 'right',
           data: {
             items: [
-              { icon: 'scale', title: 'Brigades Spéciales', content: 'Protègent le Roi et l\'ordre établi — gardiens de la caverne' },
-              { icon: 'users', title: 'Garnison', content: 'Défendent les murs — maintiennent le statu quo' },
-              { icon: 'compass', title: 'Bataillon d\'exploration', content: 'Les seuls qui sortent des murs — chercheurs de vérité' }
+              { url: '/aot/video/S1E4_Trois_Corps_Armee.mp4', title: 'S1E4 (Ep4) - Fin de la sélection, 3 corps d\'armée' },
+            ]
+          }
+        },
+        {
+          type: 'bullets',
+          column: "left",
+          step :1,
+          data: {
+            items: [
+              'Vision d\'Eren / Vision des habitants de paradis',
             ]
           }
         },
         {
           type: 'image',
-          step: 1,
+          step: 2,
           column: 'right',
           data: {
             src: '/aot/corpsarmee.webp',
             alt: 'Les trois corps d\'armée'
           }
         },
-         {
-          type: 'card',
-          step: 2,
-           column: 'right',
+        {
+          type: 'bullets',
+          column: "right",
+          step :2,
           data: {
-            title: 'Et nous ?',
-            content: '',
-            highlight: ''
+            items: [
+              'A nous de choisir : Sécurité, Confort ou Vérité ?',
+            ]
           }
         },
       ]
     },
+   
+
+ 
 
     // Slide 7: Section - Partie II
     {
@@ -208,9 +215,11 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'green',
       blocks: [
-        { type: 'heading', data: { category: 'LES AILES DE LA LIBERTÉ', title: "Le Bataillon d'Exploration", subtitle: "Confort ou Liberté — qu'est-ce qui compte vraiment ?" } },
+        { type: 'heading', data: { category: 'LES AILES DE LA LIBERTÉ', title: "Le Bataillon d'Exploration", subtitle: "Confort ou Liberté — qu'est-ce qui compte vraiment ?", image : '/aot/bataillon.jpg' } },
+        { type: 'videos', column: 'left',  data: { items: [{ url: '/aot/video/s1e16_integration_bataillon.mp4', title: 'S1E16 — Les recrues choisissent leur corps d\'armée' }] } },
         {
           type: 'icon-bullets',
+          step : 1,
           data: {
             items: [
               { icon: 'compass', title: 'Quête de Vérité', content: 'Sortir des murs, c\'est choisir la connaissance sur l\'ignorance confortable.' },
@@ -219,25 +228,15 @@ export const attackOnTitanPresentation: Presentation = {
             ]
           }
         },
-        { type: 'videos', column: 'right', data: { items: [{ url: '/aot/video/s1e16_integration_bataillon.mp4', title: 'S1E16 — Intégration du bataillon' }] } },
-        {
-          type: 'cards',
-          column: 'right',
+         {
+          type: 'quote',
+          step: 2,
+          column : 'right',
           data: {
-            items: [
-              {
-                title: 'Le Miroir de Notre Société',
-                content: "Préférons-nous la sécurité de nos murs modernes — écrans, confort, consommation — à l'incertitude de la quête de sens ? Le Bataillon refuse la normalisation de l'oppression. Chaque expédition est un acte philosophique : choisir la liberté sur le confort.",
-                highlight: 'Préférons-nous'
-              },
-              {
-                title: 'Le choix de la Philosophie',
-                content: "La philosophie, comme le Bataillon, nous demande de sortir de notre zone de confort pour affronter la vérité — même quand elle dérange.",
-                subtext: "\"Celui qui travaille pour sa seule vie ne construit rien. Mais celui qui travaille pour l'éternité, celui-là bâtit un empire [...].\" — Saint-Exupéry, Citadelle"
-              }
-            ]
+            text: "\"Celui qui travaille pour sa seule vie ne construit rien. Mais celui qui travaille pour l'éternité, celui-là bâtit un empire [...].\"",
+            author: 'Saint-Exupéry, Citadelle'
           }
-        }
+        },
       ]
     },
 
@@ -247,11 +246,21 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'green',
       blocks: [
-        { type: 'heading', data: { category: 'STOÏCISME ET TRANSCENDANCE', title: 'Erwin Smith', subtitle: 'Le Stoïcien • Le Chef qui transcende la mort' } },
-        { type: 'section', data: { title: 'Le Stoïcisme Incarné', content: "Erwin accepte ce qui ne dépend pas de lui (la mort) et agit avec excellence sur ce qui en dépend (ses choix). Il ne philosophe pas sur ce que doit être un homme de bien — il l'est." } },
+        { type: 'heading', data: { image : '/aot/erwin.jpg',category: 'STOÏCISME ET TRANSCENDANCE', title: 'Erwin Smith', subtitle: 'Le Stoïcien • Le Chef qui transcende la mort' } },
+           {
+          type: 'quote',
+          column: 'left',
+          data: {
+            author: 'Marc Aurèle, Pensées pour moi-même, Livre II, §11',
+            text: '"Songe que tu pourrais à l\'instant quitter la vie. Agis, parle, pense en conséquence."',
+          }
+        },
+                  { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/erwin_speech.mp4', title: 'S3E16 (Ep53) — La charge d\'Erwin' }] } },
+
         {
           type: 'quote',
           step: 1,
+          column : 'right',
           data: {
             text: '"Quels que soient vos rêves ou vos espoirs [...] , l\'homme ne peut échapper à la mort."',
             author: 'Erwin Smith — La charge vers le Titan Bestial (S3 E16, Ep53)'
@@ -260,6 +269,7 @@ export const attackOnTitanPresentation: Presentation = {
         {
           type: 'bullets',
           step: 1,
+          column : 'right',
           data: {
             items: [
               'Métitation stoïcienne sur la mort,',
@@ -267,18 +277,7 @@ export const attackOnTitanPresentation: Presentation = {
             ]
           }
         },
-        { type: 'videos', step: 2, column: 'right', data: { items: [{ url: '/aot/video/erwin_speech.mp4', title: 'S3E16 (Ep53) — La charge d\'Erwin' }] } },
-        {
-          type: 'card',
-          step: 2,
-          column: 'right',
-          data: {
-            title: 'Marc Aurèle',
-            content: '"Songe que tu pourrais à l\'instant quitter la vie. Agis, parle, pense en conséquence."',
-            highlight: 'Agir en conséquence',
-            subtext: 'Pensées pour moi-même, Livre II, §11'
-          }
-        }
+       
       ]
     },
 
