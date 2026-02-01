@@ -4,7 +4,7 @@ export const attackOnTitanPresentation: Presentation = {
   id: 'attack-on-titan',
   title: "Ciné Philo - L'Attaque des Titans",
   author: "Ciné Philo",
-  description: "Liberté, conscience et absurdité de la guerre - Une exploration philosophique de l'œuvre d'Hajime Isayama",
+  description: "Liberté, conscience et absurdité de la guerre",
   coverImage: '/aot/attackontitanbg.jpg',
   createdAt: '2026-01-28',
   slides: [
@@ -13,10 +13,10 @@ export const attackOnTitanPresentation: Presentation = {
       id: 'title',
       type: 'title',
       theme: 'red',
-      category: 'CINÉ PHILOSOPHIQUE',
+      category: 'CINÉ PHILO',
       title: "L'Attaque des Titans",
       subtitle: 'Liberté, conscience et absurdité de la guerre',
-      description: "Une exploration philosophique de l'œuvre d'Hajime Isayama",
+      description: "Une exploration philosophique du chef d'œuvre d'Hajime Isayama",
       backgroundImage: '/aot/attackontitanbg.jpg',
     },
 
@@ -26,16 +26,8 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'red',
       blocks: [
-        { type: 'heading', data: { category: 'SYNOPSIS', title: "L'Attaque des Titans" , subtitle : 'Une oeuvre profondément philosophique', image: '/aot/wall.jpg' } },
-        { type: 'videos',step:1, column: 'left', data: { items: [{ url: '/aot/video/s1e2_explication.mp4', title: 'S1E2 (Ep2) — Dogme de paradis' }] } },
-{
-          type: 'text',
-          step : 1,
-          data: {
-            highlightedText: 'L\'humanité est enfermée derrière trois murs immenses.',
-            content: "Depuis plus d'un siècle, les derniers humains vivent retranchés, protégés de créatures géantes — les Titans — qui dévorent les hommes sans raison apparente. Personne ne sait ce qu'il y a au-delà."
-          }
-        },
+        { type: 'heading', data: { category: 'SYNOPSIS', title: "L'Attaque des Titans" , subtitle : 'L\'humanité ignorante, enfermée derrière trois murs.', image: '/aot/wall.jpg' } },
+        { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/s1e2_explication.mp4', title: 'S1E2 (Ep2) — L\'explication du monde' }] } },
        
          {
           type: 'bullets',
@@ -49,15 +41,25 @@ export const attackOnTitanPresentation: Presentation = {
             ]
           }
         },
-        { type: 'videos', step : 2, column: 'right', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S1E1 (Ep1) — A toi qui vis 2000 ans plus tard' }] } },
+         
+        { type: 'videos', step : 2, column: 'left', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S1E1 (Ep1) — Début de l\'anime' }] } },
+       {
+          type: 'bullets',
+          column: "left",
+           step : 2,
+          data: {
+            items: [
+              'La paix est sur le point d\'être brisée ...',
+            ]
+          }
+        },
         {
           type: 'card',
           step: 3,
           column: 'right',
           data: {
-            title: 'Eren, une aventure philosophique',
-            content: "Derrière l'action, Isayama interroge nos choix de vie et notre idéal.",
-          }
+            title: 'Une Œuvre Philosophique',
+          content:''          }
         },
       ]
     },
@@ -71,10 +73,10 @@ export const attackOnTitanPresentation: Presentation = {
       title: "L'Attaque des Titans",
       subtitle: "Une exploration philosophique de l'œuvre d'Hajime Isayama",
       items: [
-        { partNumber: 'PARTIE I', title: 'Paradis : La Caverne de Platon', image: '/aot/wall.webp' },
-        { partNumber: 'PARTIE II', title: "Bataillon d'exploration : Aventure de la conscience", image: '/aot/expo.jpg' },
-        { partNumber: 'PARTIE III', title: 'Portrait : Eren, Jean', image: '/aot/jean.jpg' },
-        { partNumber: 'PARTIE IV', title: 'Gaby : Absurdité de la guerre', image: '/aot/mywar.jpg' },
+        { partNumber: 'PARTIE I', title: 'La Caverne de Platon', image: '/aot/wall.webp' },
+        { partNumber: 'PARTIE II', title: "L\'Aventure de la conscience", image: '/aot/expo.jpg' },
+        { partNumber: 'PARTIE III', title: 'Portraits (Eren, Jean)', image: '/aot/jean.jpg' },
+        { partNumber: 'PARTIE IV', title: 'L\'Absurdité de la guerre', image: '/aot/mywar.jpg' },
         { partNumber: 'PARTIE V', title: "Les Leçons d'Isayama", image: '/aot/putin.jpg' }
       ]
     },
@@ -89,6 +91,68 @@ export const attackOnTitanPresentation: Presentation = {
       subtitle: 'Paradis : la Caverne de Platon',
       backgroundImage: '/aot/wall.webp'
     },
+
+   // Slide 5: La Caverne de Platon
+    {
+      id: 'caverne-platon',
+      type: 'content',
+      theme: 'red',
+      blocks: [
+        { type: 'heading', data: { category: 'ALLÉGORIE PHILOSOPHIQUE', title: 'La Caverne de Platon', image: '/aot/wall3.jpg' } },
+        {
+          type: 'quote',
+          
+          data: {
+            text: "« Imagine des hommes enchaînés dans une demeure souterraine, ne voyant que des ombres projetées sur le mur en face d'eux, et prenant ces ombres pour la réalité. » — Platon, La République, Livre VII"
+          }
+        },
+        
+        { type: 'videos',column: 'left', data: { items: [
+          { url: '/aot/video/S1E1_Retour_du_bataillon.mp4', title: 'S1E1 (Ep1) - Eren au retour du bataillon d\'exploration' }
+        ] } },
+         {
+          type: 'videos',
+          step: 2,
+          column: 'right',
+          data: {
+            items: [
+              { url: '/aot/video/S1E4_Trois_Corps_Armee.mp4', title: 'S1E4 (Ep4) - Fin de la sélection, 3 corps d\'armée' },
+            ]
+          }
+        },
+        {
+          type: 'bullets',
+          column: "left",
+          step :1,
+          data: {
+            items: [
+              'Le bataillon représente les prisonniers qui sortent de la caverne',
+              'les habitants de Paradis préfèrent l\'ignorance confortable',
+            ]
+          }
+        },
+        {
+          type: 'image',
+          step: 2,
+          column: 'right',
+          data: {
+            src: '/aot/corpsarmee.webp',
+            alt: 'Les trois corps d\'armée'
+          }
+        },
+        {
+          type: 'bullets',
+          column: "right",
+          step :2,
+          data: {
+            items: [
+              'A nous de choisir : Confort, Gloire ou Vérité ?',
+            ]
+          }
+        },
+      ]
+    },
+   
  // Slide 6: Hannes
     {
       id: 'hannes',
@@ -110,7 +174,7 @@ export const attackOnTitanPresentation: Presentation = {
           column: 'left',
           data: {
             items: [
-              { url: '/aot/video/EP1_Hannes.mp4', title: 'S1E1 — Hannes ivre, insouciant' },
+              { url: '/aot/video/EP1_Hannes.mp4', title: 'S1E1 — Hannes : Le dernier homme de Nietzsche' },
             ]
           }
         },
@@ -119,8 +183,8 @@ export const attackOnTitanPresentation: Presentation = {
           step: 2,
           column: 'right',
           data: {
-            title: 'Isayama nous questionne',
-            content: 'Hannes, une image de l\'homme moderne ?',
+            title: '',
+            content: 'Hannes : à l\'image de l\'homme moderne ?',
           }
         },
          {
@@ -129,73 +193,12 @@ export const attackOnTitanPresentation: Presentation = {
           column: 'right',
           data: {
             items: [
-              { url: '/aot/video/EP1_Hannes_Actes.mp4', title: 'S1E1 — Hannes paralysé devant le Titan' }
+              { url: '/aot/video/EP1_Hannes_Actes.mp4', title: 'S1E1 — Hannes : Paroles vs actions' }
             ]
           }
         },
       ]
     },
-   // Slide 5: La Caverne de Platon
-    {
-      id: 'caverne-platon',
-      type: 'content',
-      theme: 'red',
-      blocks: [
-        { type: 'heading', data: { category: 'ALLÉGORIE PHILOSOPHIQUE', title: 'La Caverne de Platon', image: '/aot/wall3.jpg' } },
-        {
-          type: 'quote',
-          step :1,
-          data: {
-            text: "« Imagine des hommes enchaînés dans une demeure souterraine, ne voyant que des ombres projetées sur le mur en face d'eux, et prenant ces ombres pour la réalité. » — Platon, La République, Livre VII"
-          }
-        },
-        
-        { type: 'videos', step :1,column: 'left', data: { items: [
-          { url: '/aot/video/S1E1_Retour_du_bataillon.mp4', title: 'S1E1 (Ep1) - Eren au retour du bataillon d\'exploration' }
-        ] } },
-         {
-          type: 'videos',
-          step: 2,
-          column: 'right',
-          data: {
-            items: [
-              { url: '/aot/video/S1E4_Trois_Corps_Armee.mp4', title: 'S1E4 (Ep4) - Fin de la sélection, 3 corps d\'armée' },
-            ]
-          }
-        },
-        {
-          type: 'bullets',
-          column: "left",
-          step :1,
-          data: {
-            items: [
-              'Vision d\'Eren / Vision des habitants de paradis',
-            ]
-          }
-        },
-        {
-          type: 'image',
-          step: 2,
-          column: 'right',
-          data: {
-            src: '/aot/corpsarmee.webp',
-            alt: 'Les trois corps d\'armée'
-          }
-        },
-        {
-          type: 'bullets',
-          column: "right",
-          step :2,
-          data: {
-            items: [
-              'A nous de choisir : Sécurité, Confort ou Vérité ?',
-            ]
-          }
-        },
-      ]
-    },
-   
-
  
 
     // Slide 7: Section - Partie II
@@ -222,9 +225,9 @@ export const attackOnTitanPresentation: Presentation = {
           step : 1,
           data: {
             items: [
-              { icon: 'compass', title: 'Quête de Vérité', content: 'Sortir des murs, c\'est choisir la connaissance sur l\'ignorance confortable.' },
-              { icon: 'heart', title: 'Le Prix de la Liberté', content: 'Les épreuves et le confort sont le prix de la liberté.' },
-              { icon: 'flame', title: "l'éveil de la conscience", content: "Jean, Connie et Sasha se révèlent en choisissant une cause supérieur à leur égo." }
+              { icon: 'compass', title: 'Quête de Vérité', content: 'Sortir des murs, c\'est choisir.' },
+              { icon: 'heart', title: 'Le Prix de la Liberté', content: 'Les épreuves, la mort et le doute.' },
+              { icon: 'flame', title: "l'éveil de la conscience", content: "Jean, Connie et Sasha se révèlent." }
             ]
           }
         },
@@ -255,7 +258,7 @@ export const attackOnTitanPresentation: Presentation = {
             text: '"Songe que tu pourrais à l\'instant quitter la vie. Agis, parle, pense en conséquence."',
           }
         },
-                  { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/erwin_speech.mp4', title: 'S3E16 (Ep53) — La charge d\'Erwin' }] } },
+                  { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/erwin_speech.mp4', title: 'S3E16 (Ep53) — Erwin face à la mort' }] } },
 
         {
           type: 'quote',
@@ -298,7 +301,7 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'blue',
       blocks: [
-        { type: 'heading', data: { image:'/aot/eren.jpeg',category: 'PORTRAIT • LA BHAGAVAD GÎTA', title: 'Eren : Combat Intérieur', subtitle: 'Quand l\'homme tombe à genoux' } },
+        { type: 'heading', data: { image:'/aot/eren.jpeg',category: 'PORTRAIT • COMBAT INTERIEUR', title: 'Eren Jäger', subtitle: 'Quand l\'homme tombe à genoux' } },
         {
           type: 'text',
           data: {
@@ -313,7 +316,7 @@ export const attackOnTitanPresentation: Presentation = {
             author: 'Arjuna — Bhagavad Gîta, Chant I'
           }
         },
-        { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/s2e12_eren_combat_interieur.mp4', title: 'S2E12 (Ep37) — Hannes en danger contre le titan qui a tué la mère d\'Eren.' }] } },
+        { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/s2e12_eren_combat_interieur.mp4', title: 'S2E12 (Ep37) — Eren et Mikasa, la Bhagavad Gîta' }] } },
          {
           type: 'quote',
            step : 1,
@@ -343,7 +346,7 @@ export const attackOnTitanPresentation: Presentation = {
       theme: 'blue',
       blocks: [
         { type: 'heading', data: {image:'/aot/jean.jpg', category: 'PORTRAIT • L\'HUMANITÉ', title: 'Jean Kirschtein', subtitle: 'L\'Homme Ordinaire qui agit extraordinairement' } },
-                { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/s4e8_jean_sasha.mp4', title: 'S4E8 — Une guerre où des enfants tue des hommes' }] } },
+                { type: 'videos', column: 'left', data: { items: [{ url: '/aot/video/s4e8_jean_sasha.mp4', title: 'S4E8 — Une guerre où des enfants tuent des hommes' }] } },
 {
           type: 'bullets',
           column : 'left',
@@ -531,7 +534,7 @@ export const attackOnTitanPresentation: Presentation = {
           type: 'videos', step : 2, column : 'right',
           data: {
             items: [
-              { url: '/aot/video/e87_eren_grand_terassement.mp4', title: 'S4E28 (Ep87) - Grand Terassement' }
+              { url: '/aot/video/e87_eren_grand_terassement.mp4', title: 'S4E28 (Ep87) - Grand Terrassement' }
             ]
           }
         },
