@@ -42,24 +42,16 @@ export const attackOnTitanPresentation: Presentation = {
           }
         },
          
-        { type: 'videos', step : 2, column: 'left', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S1E1 (Ep1) — Début de l\'anime' }] } },
+        { type: 'videos', step : 2, column: 'right', data: { items: [{ url: '/aot/video/EP1_00_00.mp4', title: 'S1E1 (Ep1) — Début de l\'anime' }] } },
        {
           type: 'bullets',
-          column: "left",
+          column: "right",
            step : 2,
           data: {
             items: [
               'La paix est sur le point d\'être brisée ...',
             ]
           }
-        },
-        {
-          type: 'card',
-          step: 3,
-          column: 'right',
-          data: {
-            title: 'Une Œuvre Philosophique',
-          content:''          }
         },
       ]
     },
@@ -396,47 +388,64 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'red',
       blocks: [
-        { type: 'heading', data: { category: 'LE CYCLE DE LA HAINE', title: 'Gaby Braun', subtitle: 'Produit de la Propagande • Vision Binaire' } },
-        { type: 'section', data: { title: 'Produit de la Propagande', content: "Gaby est ce que la propagande peut créer : une enfant-soldat convaincue d'être un \"bon Eldien\", prête à tout pour prouver sa valeur à ses oppresseurs. Elle a intériorisé la haine de son propre peuple." } },
+        { type: 'heading', data: { category: 'LE CYCLE DE LA HAINE', title: 'Gaby Braun',image: '/aot/gaby.jpg', subtitle: 'Produit de la Propagande • Vision Binaire' } },
         {
-          type: 'quote',
-          step: 1,
+          type: 'videos',
+          column: 'left',
           data: {
-            text: '"Je vais tous les tuer ! Ces démons de Paradis !"',
-            author: 'Gaby Braun — Avant sa déconstruction'
+            items: [
+              { url: '/aot/video/s4e2_gaby_tranchee.mp4', title: 'S4E1 (Ep60) — Gaby l\'enfant soldat' },
+            ]
           }
         },
         {
+          type: 'quote',
+          step : 1,
+          data: {
+            text: '"Eradiquer tous ces maudits démons insulaires à cause de qui nous souffrons !"',
+            author: 'Gaby Braun — Avant sa déconstruction'
+          }
+        },
+          {
           type: 'bullets',
-          step: 1,
+           column: 'left',
+          step: 2,
           data: {
             items: [
-              'Vision binaire du monde héritée de la propagande',
               'Début du voyage initiatique de la conscience'
             ]
           }
         },
         {
           type: 'videos',
-          column: 'right',
+          step : 2,
+          column: 'left',
           data: {
             items: [
-              { url: '/aot/video/s4e2_gaby_tranchee.mp4', title: 'S4E1 (Ep60) — Fort Slava' },
-              { url: '/aot/video/s4e11_gaby_dogme.mp4', title: 'S4E10 (Ep70) — Gaby Dogme' }
+              { url: '/aot/video/s4e11_gaby_dogme.mp4', title: 'S4E10 (Ep70) — Gaby sur l\'île des démons insulaires' }
             ]
           }
         },
         {
-          type: 'card',
-          step: 1,
-          column: 'right',
+          type: 'quote',
+          step : 3,
+           column : 'right',
           data: {
-            title: 'Le Miroir d\'Eren',
-            content: 'Gaby est Eren de l\'autre côté de la mer. Même rage, même certitude d\'être du côté du bien. La haine se reproduit identiquement des deux côtés.',
-            highlight: 'Le miroir d\'Eren',
-            subtext: 'Début du voyage initiatique : la confrontation avec l\'Autre va briser ses certitudes.'
+            text: '"Dure époque que celle où il est plus simple de désagréger un atome qu\'un préjugé."',
+            author: 'Einstein'
           }
-        }
+        },
+         {
+          type: 'bullets',
+          step: 3,
+          column : 'right',
+          data: {
+            items: [
+              'un miroir d\'Eren',
+            ]
+          }
+        },
+        
       ]
     },
 
@@ -446,9 +455,17 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'red',
       blocks: [
-        { type: 'heading', data: { category: 'LA MAÏEUTIQUE', title: 'Gaby Braun', subtitle: 'La Déconstruction • La Maïeutique de Kaya' } },
+        { type: 'heading', data: { category: 'LA MAÏEUTIQUE', title: 'Gaby Braun', image : '/aot/kaya.jpg', subtitle: 'Le parcours initiatique • La Maïeutique de Kaya' } },
         { type: 'section', data: { title: 'La Maïeutique de Kaya', content: "\"Qu'est-ce que ma mère avait fait de mal ?\" — Cette question simple fait s'effondrer tout l'édifice. Socrate utilisait la maïeutique pour \"accoucher\" les esprits de la vérité. Kaya, sans le savoir, devient la sage-femme de la conscience de Gaby." } },
-        {
+       {
+          type: 'videos',
+          column: 'left',
+          data: {
+            items: [
+              { url: '/aot/video/s4e11_gaby_kaya_socrate.mp4', title: 'S4E11 (Ep70) — Kaya confronte Gaby' },
+            ]
+          }
+        }, {
           type: 'bullets',
           step: 1,
           data: {
@@ -460,26 +477,24 @@ export const attackOnTitanPresentation: Presentation = {
         },
         {
           type: 'videos',
-          column: 'right',
+          column: 'left',
+          step : 1,
           data: {
             items: [
-              { url: '/aot/video/s4e11_gaby_kaya_socrate.mp4', title: 'S4E11 (Ep70) — Kaya confronte Gaby' },
               { url: '/aot/video/s4e12_peresasha.mp4', title: 'S4E12 (Ep71) — Le père de Sasha brise le cercle' },
               { url: '/aot/video/e77_gaby_sagesse.mp4', title: 'S4E18 (Ep77) — Gaby prise de conscience' }
             ]
           }
         },
-        {
-          type: 'card',
-          step: 1,
-          column: 'right',
+         {
+          type: 'quote',
+          step : 2,
+           column : 'right',
           data: {
-            title: 'La Prise de Conscience',
-            content: 'Les "démons" de Paradis vivent, aiment, souffrent comme elle. La réalité est plus complexe que la propagande.',
-            highlight: 'Ces gens... ne sont pas des démons',
-            subtext: 'La déconstruction de Gaby est un chemin philosophique : du dogme à la pensée libre.'
+            text: '"Il n\'y avait aucun démons sur cette île, rien que des gens normaux."',
+            author: 'Gaby, Ep77'
           }
-        }
+        },
       ]
     },
 
@@ -500,10 +515,12 @@ export const attackOnTitanPresentation: Presentation = {
       type: 'content',
       theme: 'red',
       blocks: [
-        { type: 'heading', data: { title: "Les Leçons d'Isayama", subtitle: "Ce que l'Attaque des Titans nous enseigne" } },
-       
-          {
-          type: 'videos', 
+        { type: 'heading', data: { title: "Les Leçons d'Isayama", image :'/aot/mywarbg.PNG', subtitle: "Ce que l'Attaque des Titans nous enseigne" } },
+
+        // 1. My War - Déshumanisation
+        {
+          type: 'videos',
+          column: 'left',
           data: {
             items: [
               { url: '/aot/video/mywar.mp4', title: 'Générique saison finale — My War' },
@@ -511,27 +528,30 @@ export const attackOnTitanPresentation: Presentation = {
           }
         },
         {
-          type: 'parallels',  
+          type: 'icon-bullets',
+          column: 'left',
           data: {
             items: [
-              {
-                icon: 'alert',
-                title: "L'Absurdité de la Guerre",
-                anime: "L'ennemi n'est plus le Titan, mais l'homme de l'autre côté de la mer — puis son propre voisin. La déshumanisation engendre l'escalade.",
-                realWorld: "Militarisation et guerres en Europe, partis extrêmistes."
-              },
-            ],
-                    }
-        },
-         {
-          type : 'quote', step : 1,
-          data : {
-            text : '"Cette guerre, on ne savait pas pourquoi on la faisait. On se battait contre des gens comme nous.\" ',
-            author : "Lazare Ponticelli, dernier poilu français"
+              { icon: 'alert', title: 'Déshumanisation', content: "L'ennemi devient « l'autre », le démon" },
+              { icon: 'eye-off', title: 'Vision binaire', content: 'Nous vs Eux, Bien vs Mal' },
+            ]
           }
         },
-         {
-          type: 'videos', step : 2, column : 'right',
+        {
+          type: 'quote',
+          step: 1,
+          column: 'left',
+          data: {
+            text: '"Cette guerre, on ne savait pas pourquoi on la faisait. On se battait contre des gens comme nous."',
+            author: 'Lazare Ponticelli, dernier poilu français'
+          }
+        },
+
+        // 2. Grand Terrassement - Liberté absolue
+        {
+          type: 'videos',
+          step: 2,
+          column: 'right',
           data: {
             items: [
               { url: '/aot/video/e87_eren_grand_terassement.mp4', title: 'S4E28 (Ep87) - Grand Terrassement' }
@@ -539,16 +559,23 @@ export const attackOnTitanPresentation: Presentation = {
           }
         },
         {
-          type: 'parallels', step : 2, column : 'right',
+          type: 'icon-bullets',
+          step: 2,
+          column: 'right',
           data: {
             items: [
-              {
-                icon: 'flame',
-                title: "La Liberté Absolue Détruit",
-                anime: "Eren, Surhomme nietzschéen, brise toutes les chaînes — mais sa liberté absolue mène au Grand Terrassement, la destruction totale.",
-                realWorld: "Liberté de consommer, liberté d'affirmation, liberté d'être, ... Ne faut-il pas une limite ?"
-              }
-            ],
+              { icon: 'flame', title: 'Liberté absolue nietzschéenne', content: 'Briser toutes les chaînes, sans limites' },
+              { icon: 'zap', title: 'Finalité vs Moyens', content: 'Arriver à la paix en faisant la guerre ?' }
+            ]
+          }
+        },
+        {
+          type: 'quote',
+          step: 3,
+          column: 'right',
+          data: {
+            text: '"I alone can fix it."',
+            author: 'Donald Trump, Convention républicaine 2016'
           }
         }
       ]
@@ -562,7 +589,7 @@ export const attackOnTitanPresentation: Presentation = {
       blocks: [
         { type: 'heading', data: { category: 'CONCLUSION', title: 'Qu\'est-ce que la Liberté ?', subtitle: 'Trois visions, trois chemins' } },
         { step: 1, type: 'quote', data: { text: "\"L'homme qui s'adonne à ses plaisirs devient moins libre que celui qui s'en restreint.\"", author: 'Spinoza', image: { src: '/aot/hannes.jpg', alt: 'Hannes', size: 80 } } },
-        { step: 2, type: 'quote', data: { text: "\"Qui n\'agit pas ne sait pas.\"", author: 'KOAN Zen', image: { src: '/aot/gaby.jpg', alt: 'Gaby', size: 80 } } },
+        { step: 2, type: 'quote', data: { text: "\"Imagine des hommes enchaînés [...], prenant ces ombres pour la réalité.\"", author: 'Platon, La République, Livre VII', image: { src: '/aot/gaby.jpg', alt: 'Gaby', size: 80 } } },
         { step: 3, type: 'quote', data: { text: '"Une excellente manière de te défendre d\'eux, c\'est d\'éviter de leur ressembler."', author: 'Marc Aurèle, Pensées pour moi-même', image: { src: '/aot/jean.jpg', alt: 'Jean', size: 80 } } }
       ]
     }
