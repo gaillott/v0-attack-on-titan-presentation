@@ -2,17 +2,21 @@
   xmlns="http://www.w3.org/2000/svg"
   width="512"
   height="512"
-  viewBox="0 0 24 24"
+  viewBox="0 0 512 512"
 >
-  <rect width="24" height="24" fill="#0f172a" />
-  <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <rect width="18" height="18" x="3" y="3" rx="2" />
-    <path d="M7 3v18" />
-    <path d="M3 7.5h4" />
-    <path d="M3 12h18" />
-    <path d="M3 16.5h4" />
-    <path d="M17 3v18" />
-    <path d="M17 7.5h4" />
-    <path d="M17 16.5h4" />
+  <!-- Background with slate-800 -->
+  <rect width="512" height="512" rx="96" fill="#1e293b" />
+
+  <!-- Soft inner glow -->
+  <rect x="64" y="64" width="384" height="384" rx="48" fill="#334155" opacity="0.3" />
+
+  <!-- Stylized "A" lettermark -->
+  <g fill="none" stroke="#94a3b8" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left leg -->
+    <path d="M160 368 L256 144" />
+    <!-- Right leg -->
+    <path d="M352 368 L256 144" />
+    <!-- Crossbar -->
+    <path d="M185 296 L327 296" />
   </g>
 </svg>
