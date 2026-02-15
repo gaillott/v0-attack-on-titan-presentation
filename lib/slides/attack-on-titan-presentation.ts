@@ -401,10 +401,10 @@ export const attackOnTitanPresentation: Presentation = {
           {
           type: 'bullets',
            column: 'left',
-          step: 2,
+          step: 1,
           data: {
             items: [
-              'Début du voyage initiatique de la conscience'
+              'Séparativité et parti politique',
             ]
           }
         },
@@ -412,7 +412,7 @@ export const attackOnTitanPresentation: Presentation = {
           type: 'video',
           step : 2,
           column: 'left',
-          data: { video: { url: '/aot/video/s4e11_gaby_dogme.mp4', title: 'S4E10 (Ep70) — Gaby sur l\'île des démons insulaires' } }
+          data: { video: { url: '/aot/video/s4e11_gaby_dogme.mp4', title: 'S4E10 (Ep70) — Début du voyage initiatique de la conscience' } }
         },
         {
           type: 'quote',
@@ -429,7 +429,17 @@ export const attackOnTitanPresentation: Presentation = {
           column : 'right',
           data: {
             items: [
-              'un miroir d\'Eren',
+              "Le récit est supérieur au réel",
+            ]
+          }
+        },
+        {
+          type: 'bullets',
+          step: 4,
+          column : 'right',
+          data: {
+            items: [
+              "Comment sortir de l'illusion ?",
             ]
           }
         },
@@ -444,18 +454,19 @@ export const attackOnTitanPresentation: Presentation = {
       theme: 'red',
       blocks: [
         { type: 'heading', data: { category: 'LA MAÏEUTIQUE', title: 'Gaby Braun', image : '/aot/kaya.jpg', subtitle: 'Le parcours initiatique • La Maïeutique de Kaya' } },
-        { type: 'section', data: { title: 'La Maïeutique de Kaya', content: "\"Qu'est-ce que ma mère avait fait de mal ?\" — Cette question simple fait s'effondrer tout l'édifice. Socrate utilisait la maïeutique pour \"accoucher\" les esprits de la vérité. Kaya, sans le savoir, devient la sage-femme de la conscience de Gaby." } },
-       {
+        {
           type: 'video',
           column: 'left',
           data: {
             video: 
-              { url: '/aot/video/s4e11_gaby_kaya_socrate.mp4', title: 'S4E11 (Ep70) — Kaya confronte Gaby' },
+              { url: '/aot/video/s4e11_gaby_kaya_socrate.mp4', title: 'S4E11 (Ep70) — La Maïeutique de Kaya' },
             
           }
-        }, {
+        },
+        { type: 'section',step:1, data: { title: 'La Maïeutique de Kaya', content: "\"Qu'est-ce que ma mère avait fait de mal ?\" "} },
+        {
           type: 'bullets',
-          step: 1,
+          step: 2,
           data: {
             items: [
               'De la certitude au doute : le premier pas vers la sagesse',
@@ -463,15 +474,25 @@ export const attackOnTitanPresentation: Presentation = {
             ]
           }
         },
-        { type: 'video', column: 'left', step: 1, data: { video: { url: '/aot/video/s4e12_peresasha.mp4', title: 'S4E12 (Ep71) — Le père de Sasha brise le cercle' } } },
-        { type: 'video', column: 'left', step: 1, data: { video: { url: '/aot/video/e77_gaby_sagesse.mp4', title: 'S4E18 (Ep77) — Gaby prise de conscience' } } },
+        { type: 'video', column: 'left', step: 3, data: { video: { url: '/aot/video/s4e12_peresasha.mp4', title: 'S4E12 (Ep71) — Le père de Sasha, héros de l\'ombre' } } },
+        { type: 'video', column: 'left', step: 3, data: { video: { url: '/aot/video/e77_gaby_sagesse.mp4', title: 'S4E18 (Ep77) — Gaby sors de la caverne' } } },
          {
           type: 'quote',
-          step : 2,
+          step : 4,
            column : 'right',
           data: {
             text: '"Il n\'y avait aucun démons sur cette île, rien que des gens normaux."',
             author: 'Gaby, Ep77'
+          }
+        },
+        {
+          type: 'bullets',
+          step: 5,
+          column : 'right',
+          data: {
+            items: [
+              'l\'homme n\'apprend pas par le savoir, mais par le vécu'
+            ]
           }
         },
       ]
@@ -517,7 +538,7 @@ export const attackOnTitanPresentation: Presentation = {
           column: 'left',
           data: {
             items: [
-              { icon: 'flame', title: 'Se battre pour la conscience', content: 'L\'idéaliste en nous qui cherche l\'aventure.' },
+              { icon: 'flame', title: 'Allumer la flamme', content: 'Réveiller l\'idéaliste en nous qui cherche l\'aventure.' },
             ]
           }
         },
@@ -530,16 +551,7 @@ export const attackOnTitanPresentation: Presentation = {
             video: { url: '/aot/video/mywar.mp4', title: 'Générique saison finale — My War' },
           }
         },
-        {
-          type: 'icon-bullets',
-           column: 'right',
-          step : 4,
-          data: {
-            items: [
-              { icon: 'zap', title: 'Déshumanisation', content: "Vision binaire, propagande, dogme." },
-            ]
-          }
-        },
+        
         {
           type: 'quote',
            column: 'right',
@@ -547,6 +559,16 @@ export const attackOnTitanPresentation: Presentation = {
           data: {
             text: '"Cette guerre, on ne savait pas pourquoi on la faisait. On se battait contre des gens comme nous."',
             author: 'Lazare Ponticelli, dernier poilu français'
+          }
+        },
+        {
+          type: 'icon-bullets',
+           column: 'right',
+          step : 4,
+          data: {
+            items: [
+              { icon: 'zap', title: 'Danger de la séparativité', content: "Vision binaire, propagande, dogme." },
+            ]
           }
         },
 
@@ -562,7 +584,7 @@ export const attackOnTitanPresentation: Presentation = {
       blocks: [
         { type: 'heading', data: { category: 'CONCLUSION', title: 'Qu\'est-ce que la Liberté ?', subtitle: 'Trois visions, trois chemins', image : '/aot/bataillon.jpg' } },
         { step: 1, type: 'quote', data: { text: "« L'homme qui s'adonne à ses plaisirs devient moins libre que celui qui s'en restreint. »", author: 'Spinoza', image: { src: '/aot/hannes.jpg', alt: 'Hannes', size: 80 } } },
-        { step: 2, type: 'quote', data: { text: "« Imagine des hommes enchaînés [...], prenant ces ombres pour la réalité. »", author: 'Platon, La République, Livre VII', image: { src: '/aot/gaby.jpg', alt: 'Gaby', size: 80 } } },
+        { step: 2, type: 'quote', data: { text: "« Je ne crois pas savoir ce que je ne sais point.  »", author: 'Socrate', image: { src: '/aot/gaby.jpg', alt: 'Gaby', size: 80 } } },
         { step: 3, type: 'quote', data: { text: '« Être homme, c’est précisément être responsable. »', author: 'St Exupéry, Terre des hommes', image: { src: '/aot/jean.jpg', alt: 'Jean', size: 80 } } }
       ]
     }
