@@ -138,6 +138,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
       *Vidéo*
 
       Isayama nous propose de choisir : A leur place, choisirons nous le confort, la gloire ou la quête de la vérité.
+      Personnellement, Il n'y a pas photo ...
 
       `,
       blocks: [
